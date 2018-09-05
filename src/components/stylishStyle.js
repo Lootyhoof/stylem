@@ -589,6 +589,11 @@ Style.prototype = {
 	HTMLNS: "http://www.w3.org/1999/xhtml",
 	ios: Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService),
 	sss: Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService),
+	console: Components.classes['@mozilla.org/consoleservice;1'].getService(Components.interfaces.nsIConsoleService),
+
+	log: function(str) {
+		this.console.logStringMessage(str)
+	},
 
 	getStyleSheet: function(code) {
 		var parser = Components.classes["@mozilla.org/xmlextras/domparser;1"].createInstance(Components.interfaces.nsIDOMParser);
@@ -696,6 +701,7 @@ Style.prototype = {
 		var nameComment = this.name ? "/*" + this.name.replace(/\*\//g, "").replace(/#/g, "") + "*/" : "";
 		// this will strip new lines rather than escape - not what we want
 		//return this.ios.newURI("data:text/css," + nameComment + this.code.replace(/\n/g, "%0A"), null, null);
+		this.log("data:text/css," + nameComment + encodeURIComponent(this.code));
 		return this.ios.newURI("data:text/css," + nameComment + encodeURIComponent(this.code), null, null);
 	},
 
@@ -711,6 +717,8 @@ Style.prototype = {
 		this.appliedInfo = [dataUrl, registrationMethod];
 		if (!this.sss.sheetRegistered(dataUrl, registrationMethod)) {
 			this.sss.loadAndRegisterSheet(dataUrl, registrationMethod);
+			this.log(this.sss.sheetRegistered(dataUrl, registrationMethod));
+			this.log(registrationMethod);
 		}
 	},
 
@@ -1005,7 +1013,7 @@ Style.prototype = {
 		if (!("AUTHOR_SHEET" in this.sss) || Services.appinfo.ID == isSeaMonkey || /\/\*\s*AGENT_SHEET\s*\*\//.test(this.code)) {
 			return this.sss.AGENT_SHEET;
 		}
-		return this.sss.AUTHOR_SHEET;
+		return this.sss.USER_SHEET;
 	},
 
 	downloadMd5: function(md5Url, callback) {
