@@ -88,22 +88,19 @@ var stylishOverlay = {
 		prefService.addObserver("extensions.stylem.styleRegistrationEnabled", stylishOverlay, false);
 
 		// style add/delete
+		stylishOverlay.TOPICS = ["stylem-style-add", "stylem-style-change", "stylem-style-delete"];
 		var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-		observerService.addObserver(stylishOverlay, "stylem-style-add", false);
-		observerService.addObserver(stylishOverlay, "stylem-style-change", false);
-		observerService.addObserver(stylishOverlay, "stylem-style-delete", false);
+		let junk = stylishOverlay.TOPICS.map((t) => observerService.addObserver(stylishOverlay, t, false));
 	},
 
 	destroy: function() {
 		if (typeof gBrowser != "undefined") {
-			gBrowser.removeProgressListener(stylishOverlay.urlLoadedListener, Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT); 
+			gBrowser.removeProgressListener(stylishOverlay.urlLoadedListener, Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
 		}
 		var prefService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch);
 		prefService.removeObserver("extensions.stylem.styleRegistrationEnabled", stylishOverlay);
 		var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-		observerService.removeObserver(stylishOverlay, "stylem-style-add");
-		observerService.removeObserver(stylishOverlay, "stylem-style-change");
-		observerService.removeObserver(stylishOverlay, "stylem-style-delete");
+		let junk = stylishOverlay.TOPICS.map((t) => observerService.removeObserver(stylishOverlay, t));
 	},
 
 	observe: function(subject, topic, data) {
@@ -118,7 +115,7 @@ var stylishOverlay = {
 				aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
 				aIID.equals(Components.interfaces.nsISupports))
 				return this;
-			throw Components.results.NS_NOINTERFACE; 
+			throw Components.results.NS_NOINTERFACE;
 		},
 		onLocationChange: function(progress, request, uri) {
 			// only if it's the current tab
@@ -138,7 +135,7 @@ var stylishOverlay = {
 
 	urlUpdated: function() {
 		var uri = stylishOverlay.currentURI;
-		if (stylishOverlay.lastUrl == uri.spec)
+		if (!uri || stylishOverlay.lastUrl == uri.spec)
 			return;
 		stylishOverlay.lastUrl = uri.spec;
 		document.documentElement.setAttribute("stylem-url", uri.spec);
@@ -402,7 +399,7 @@ var stylishOverlay = {
 		if (Components.interfaces.nsIEffectiveTLDService) {
 			try {
 				var tld = Components.classes["@mozilla.org/network/effective-tld-service;1"].getService(Components.interfaces.nsIEffectiveTLDService);
-				if (Components.ID('{b07cb0f0-3394-572e-6260-dbaed0a292ba}').equals(Components.interfaces.nsIStyleSheetService)) {	
+				if (Components.ID('{b07cb0f0-3394-572e-6260-dbaed0a292ba}').equals(Components.interfaces.nsIStyleSheetService)) {
 					if (domain.length <= tld.getEffectiveTLDLength(domain)) {
 						return;
 					}
@@ -411,7 +408,7 @@ var stylishOverlay = {
 						return;
 					}
 				}
-			} catch(ex) { 
+			} catch(ex) {
 				//this can happen if it's an ip address
 				return;
 			}

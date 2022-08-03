@@ -71,7 +71,9 @@ var stylishCommon = {
 			for (var i = 0; i < browsers.length; i++) {
 				// We can't read into remote documents easily. We only work with about:, anyway.
 				if (!(browsers[i].isRemoteBrowser) && browsers[i].currentURI.schemeIs("about")) {
-					var de = browsers[i].contentDocument.documentElement;
+					let doc = browsers[i].contentDocument;
+					if (doc == null) continue;
+					let de = doc.documentElement;
 					if (de && de.getAttribute("windowtype") == name) {
 						tbWin.gBrowser.selectTabAtIndex(i);
 						tbWin.focus();
@@ -152,11 +154,11 @@ var stylishCommon = {
 		if (urls.length == 0) {
 			return;
 		}
-		
+
 		if (startedCallback) {
 			startedCallback();
 		}
-		
+
 		// Run through each one, one at a time, keeping track of successes or failures
 		var currentIndex = 0;
 		var results = {successes: [], failures: []};
@@ -172,7 +174,7 @@ var stylishCommon = {
 		}
 		stylishCommon.installFromUrl(urls[currentIndex], processResult);
 	},
-	
+
 	endInstallFromUrls: function(results, endedCallback) {
 		if (endedCallback) {
 			endedCallback();
@@ -310,7 +312,7 @@ var stylishCommon = {
 			}
 			return;
 		}
-		
+
 		function fillName(prefix) {
 			params.windowType = stylishCommon.getWindowName(prefix, params.triggeringDocument ? stylishFrameUtils.cleanURI(params.triggeringDocument.location.href) : null);
 		}

@@ -1,4 +1,4 @@
-Stylem - a user style manager for Pale Moon, Interlink and other Mozilla-based software. Install styles from [userstyles.org](https://userstyles.org/) to change how web pages and the application look.
+Stylem - a user style manager for Pale Moon, Interlink, SeaMonkey, and other Mozilla-based software. Install styles from [userstyles.org](https://userstyles.org/) to change how web pages and the application look.
 
 Contributing
 ------------
@@ -24,7 +24,7 @@ License
 
 Copyright (C) 2005-2014 Jason Barnabe <jason.barnabe@gmail.com>
 
-Copyright (C) 2018+ Stylem Contributors
+Copyright (C) 2018-2022 Stylem Contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
