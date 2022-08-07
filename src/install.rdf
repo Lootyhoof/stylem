@@ -5,7 +5,7 @@
   <Description rdf:about="urn:mozilla:install-manifest">
     <em:id>{503a85e3-84c9-40e5-b98e-98e62085837f}</em:id>
     <em:name>Stylem</em:name>
-    <em:version>2.2.8</em:version>
+    <em:version>2.2.9</em:version>
     <em:description>Restyle the web with Stylem, a user styles manager.</em:description>
     <em:creator>Lootyhoof</em:creator>
     <em:iconURL>chrome://stylem/skin/32.svg</em:iconURL>
@@ -68,7 +68,6 @@
     <em:contributor>LouCypher - icons</em:contributor>
     <em:contributor>s4nji - icons</em:contributor>
     <em:contributor>Jason Barnabe</em:contributor>
-    <em:contributor>Ryan C</em:contributor>
     <em:contributor>@dirkf</em:contributor>
     <em:contributor>Oriol Brufau</em:contributor>
     <em:type>2</em:type>
@@ -78,7 +77,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>52.0</em:minVersion>
-        <em:maxVersion>52.*</em:maxVersion>
+        <em:maxVersion>57.*</em:maxVersion>
       </Description>
     </em:targetApplication>
     <!--Thunderbird-alikes-->

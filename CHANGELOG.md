@@ -1,5 +1,10 @@
 # Changelog
 
+### 2.2.9
+- safety fix to avoid console warnings (thanks dirkf)
+- additional compatibility fixes for Mozilla platform (up to 57) (thanks dirkf)
+- internal code cleanup (thanks dirkf)
+
 ### 2.2.8
 - support SeaMonkey 2.53.* (thanks UCyborg)
 - add Slovenian translation (thanks UCyborg)
