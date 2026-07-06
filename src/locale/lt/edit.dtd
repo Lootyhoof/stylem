@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "L">
 <!ENTITY xulnamespace "XUL vardai kaip numatyta">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "Atnaujinimo URL:">
+
+<!ENTITY usercsssettings "Parinktys">
+<!ENTITY usercssmeta "UserCSS metaduomenys">
+<!ENTITY theme "Tema">
+<!ENTITY themeDefault "Numatytoji">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

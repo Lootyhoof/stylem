@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "XUL 이름공간 선언">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "업데이트 URL:">
+
+<!ENTITY usercsssettings "옵션">
+<!ENTITY usercssmeta "UserCSS 메타데이터">
+<!ENTITY theme "테마">
+<!ENTITY themeDefault "기본값">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

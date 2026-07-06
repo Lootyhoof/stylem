@@ -1,6 +1,12 @@
 <!ENTITY entername "Pavadinkite šį stilių:">
 <!ENTITY install "Diegti">
 <!ENTITY install.ak "D">
-<!ENTITY preview "Peržiūra">
-<!ENTITY preview.ak "P">
-<!ENTITY title "Įdiegti naudotojo stilių">
+
+<!ENTITY cancelInstall "Atšaukti">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Uždaryti skirtuką">
+<!ENTITY closeTab.ak "U">
+<!ENTITY editStyle "Keisti stilių">
+<!ENTITY editStyle.ak "K">
+<!ENTITY resetDefaults "Atstatyti į numatytąsias">
+<!ENTITY resetDefaults.ak "A">

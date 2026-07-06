@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "r">
 <!ENTITY xulnamespace "XUL kot privzeti imenski prostor">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL za posodobitev:">
+
+<!ENTITY usercsssettings "Možnosti">
+<!ENTITY usercssmeta "UserCSS metapodatki">
+<!ENTITY theme "Tema">
+<!ENTITY themeDefault "Privzeto">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

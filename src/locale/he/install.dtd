@@ -1,6 +1,12 @@
 <!ENTITY entername "תן שם לסגנון הזה:">
 <!ENTITY install "התקן">
 <!ENTITY install.ak "ק">
-<!ENTITY preview "תצוגה מקדימה">
-<!ENTITY preview.ak "צ">
-<!ENTITY title "התקן סגנון של משתמש">
+
+<!ENTITY cancelInstall "בטל">
+<!ENTITY cancelInstall.ak "ב">
+<!ENTITY closeTab "סגור לשונית">
+<!ENTITY closeTab.ak "ס">
+<!ENTITY editStyle "ערוך סגנון">
+<!ENTITY editStyle.ak "ע">
+<!ENTITY resetDefaults "אפס לברירת מחדל">
+<!ENTITY resetDefaults.ak "א">

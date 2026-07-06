@@ -1,6 +1,12 @@
 <!ENTITY entername "Доделите назив овом стилу:">
 <!ENTITY install "Инсталирај">
 <!ENTITY install.ak "И">
-<!ENTITY preview "Преглед">
-<!ENTITY preview.ak "П">
-<!ENTITY title "Инсталирај кориснички стил">
+
+<!ENTITY cancelInstall "Откажи">
+<!ENTITY cancelInstall.ak "О">
+<!ENTITY closeTab "Затвори језичак">
+<!ENTITY closeTab.ak "З">
+<!ENTITY editStyle "Уреди стил">
+<!ENTITY editStyle.ak "У">
+<!ENTITY resetDefaults "Врати на подразумевано">
+<!ENTITY resetDefaults.ak "В">

@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "g">
 <!ENTITY xulnamespace "Espace de nom XUL par défaut">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL de mise à jour :">
+
+<!ENTITY usercsssettings "Options">
+<!ENTITY usercssmeta "Métadonnées UserCSS">
+<!ENTITY theme "Thème">
+<!ENTITY themeDefault "Par défaut">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

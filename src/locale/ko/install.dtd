@@ -1,6 +1,12 @@
 <!ENTITY entername "스타일 이름 입력 :">
 <!ENTITY install "설치">
 <!ENTITY install.ak "I">
-<!ENTITY preview "미리보기">
-<!ENTITY preview.ak "P">
-<!ENTITY title "사용자 스타일 설치">
+
+<!ENTITY cancelInstall "취소">
+<!ENTITY cancelInstall.ak "취">
+<!ENTITY closeTab "탭 닫기">
+<!ENTITY closeTab.ak "닫">
+<!ENTITY editStyle "스타일 편집">
+<!ENTITY editStyle.ak "편">
+<!ENTITY resetDefaults "기본값으로 재설정">
+<!ENTITY resetDefaults.ak "기">

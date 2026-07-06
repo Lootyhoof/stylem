@@ -5,74 +5,23 @@
   <Description rdf:about="urn:mozilla:install-manifest">
     <em:id>{503a85e3-84c9-40e5-b98e-98e62085837f}</em:id>
     <em:name>Stylem</em:name>
-    <em:version>2.2.9</em:version>
-    <em:description>Restyle the web with Stylem, a user styles manager.</em:description>
+    <em:version>3.0.0b1</em:version>
+    <em:description>Restyle the web with Stylem, a UserCSS-compatible user styles manager for UXP-based applications.</em:description>
     <em:creator>Lootyhoof</em:creator>
     <em:iconURL>chrome://stylem/skin/32.svg</em:iconURL>
-    <em:optionsType>2</em:optionsType>
-    <em:optionsURL>chrome://stylem/content/options.xul</em:optionsURL>
-    <em:multiprocessCompatible>true</em:multiprocessCompatible>
-    <em:translator>Team erweiterungen.de - de</em:translator>
-    <em:translator>Fux - de</em:translator>
-    <em:translator>drry - ja</em:translator>
-    <em:translator>Ghelman - pt-BR</em:translator>
-    <em:translator>xmoke - zh-CN</em:translator>
-    <em:translator>MatrixIsAllOver - it</em:translator>
-    <em:translator>pirlouy - fr</em:translator>
-    <em:translator>jojaba - fr</em:translator>
-    <em:translator>loveleeyoungae - vi</em:translator>
-    <em:translator>AllanKJ - da</em:translator>
-    <em:translator>Ian Moody - en-GB</em:translator>
-    <em:translator>xren - ru</em:translator>
-    <em:translator>momo6562 - zh-TW</em:translator>
-    <em:translator>Alf - nl</em:translator>
-    <em:translator>chuzo - es-ES</em:translator>
-    <em:translator>Allan Kimmer Jensen - sv-SE</em:translator>
-    <em:translator>teo - pl</em:translator>
-    <em:translator>tymofiy - uk</em:translator>
-    <em:translator>SiiiE - he-IL</em:translator>
-    <em:translator>KNTRO - es-AR</em:translator>
-    <em:translator>Suurkivi - et</em:translator>
-    <em:translator>WonderCsabo - hu</em:translator>
-    <em:translator>JTojnar - cs</em:translator>
-    <em:translator>BlastSound - ko</em:translator>
-    <em:translator>futsudesu - ko</em:translator>
-    <em:translator>maybee - ko</em:translator>
-    <em:translator>surefx - ko</em:translator>
-    <em:translator>tHJYang - ko</em:translator>
-    <em:translator>ДакСРБИЈА - sr</em:translator>
-    <em:translator>Luana - it</em:translator>
-    <em:translator>Atari - ro</em:translator>
-    <em:translator>raulmalea - ro</em:translator>
-    <em:translator>Haebaru - ja</em:translator>
-    <em:translator>Lakrits - sv-SE</em:translator>
-    <em:translator>factorymarks - ja</em:translator>
-    <em:translator>gymka - lt</em:translator>
-    <em:translator>banthaz - sv-SE</em:translator>
-    <em:translator>kenmooda - fi</em:translator>
-    <em:translator>mdr.ksk - et</em:translator>
-    <em:translator>yfdyh000 - zh-CN</em:translator>
-    <em:translator>Joe82 - gl</em:translator>
-    <em:translator>文科 - zh-CN, zh-TW</em:translator>
-    <em:translator>shyangs - zh-TW</em:translator>
-    <em:translator>CoolCmd - ru</em:translator>
-    <em:translator>Michal Čaplygin - cs</em:translator>
-    <em:translator>Tim Nguyen - fr</em:translator>
-    <em:translator>Heimen Stoffels - nl</em:translator>
-    <em:translator>ThBu92 - ar</em:translator>
-    <em:translator>Alp Eren - tr</em:translator>
-    <em:translator>SW1FT - pt-PT</em:translator>
-    <em:translator>FranklinDM - tl</em:translator>
-    <em:translator>UCyborg - sl</em:translator>
-    <em:contributor>t1470258 - icons</em:contributor>
-    <em:contributor>LouCypher - icons</em:contributor>
-    <em:contributor>s4nji - icons</em:contributor>
-    <em:contributor>Jason Barnabe</em:contributor>
-    <em:contributor>@dirkf</em:contributor>
-    <em:contributor>Oriol Brufau</em:contributor>
+    <em:multiprocessCompatible>false</em:multiprocessCompatible>
     <em:type>2</em:type>
 
-    <!--Firefox-alikes-->
+    <!-- Pale Moon -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
+        <em:minVersion>28.0</em:minVersion>
+        <em:maxVersion>33.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <!-- Basilisk / Firefox -->
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
@@ -80,45 +29,24 @@
         <em:maxVersion>57.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-    <!--Thunderbird-alikes-->
+
+    <!-- Epyrus -->
     <em:targetApplication>
       <Description>
-        <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
-        <em:minVersion>52.0</em:minVersion>
-        <em:maxVersion>52.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-    <!--SeaMonkey-->
-    <em:targetApplication>
-      <Description>
-        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-        <em:minVersion>2.16</em:minVersion>
-        <em:maxVersion>2.53.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-    <!--Toolkit-->
-    <em:targetApplication>
-      <Description>
-        <em:id>toolkit@mozilla.org</em:id>
-        <em:minVersion>19.0</em:minVersion>
-        <em:maxVersion>52.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-    <!-- Pale Moon -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
-        <em:minVersion>25.0</em:minVersion>
-        <em:maxVersion>31.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-    <!-- Borealis Navigator -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{a3210b97-8e8a-4737-9aa0-aa0e607640b9}</em:id>
-        <em:minVersion>0.9.0a1</em:minVersion>
+        <em:id>{29877c1d-27df-4421-9a79-382c31470151}</em:id>
+        <em:minVersion>1.0</em:minVersion>
         <em:maxVersion>2.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+
+    <!-- SeaMonkey -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
+        <em:minVersion>2.49</em:minVersion>
+        <em:maxVersion>2.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
   </Description>
 </RDF>

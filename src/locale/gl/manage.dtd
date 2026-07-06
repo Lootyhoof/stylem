@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Instalar dende ligazóns...">
 <!ENTITY managetitle "Xeitosiño">
 <!ENTITY nostylesstart "Visitar">
-<!ENTITY nostylesend "para información sobre como usar o Xeitosiño.">
+<!ENTITY nostylesend "- ou escribe un novo estilo.">
 <!ENTITY sortenabled "Activar">
+<!ENTITY exportstyles "Exportar…">
+<!ENTITY importstyles "Importar…">
 <!ENTITY sortname "Nome">
 <!ENTITY sorttype "Tipo">
 <!ENTITY writenew "Escribir Novo Estilo">
 <!ENTITY writenew.ak "E">
+<!ENTITY supportpage "Páxina de soporte">

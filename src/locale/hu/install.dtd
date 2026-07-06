@@ -1,6 +1,12 @@
 <!ENTITY entername "A stílusfájl neve legyen:">
 <!ENTITY install "Telepítés">
 <!ENTITY install.ak "T">
-<!ENTITY preview "Előnézet">
-<!ENTITY preview.ak "E">
-<!ENTITY title "Stílusfájl telepítése">
+
+<!ENTITY cancelInstall "Mégse">
+<!ENTITY cancelInstall.ak "M">
+<!ENTITY closeTab "Lap bezárása">
+<!ENTITY closeTab.ak "L">
+<!ENTITY editStyle "Stílus szerkesztése">
+<!ENTITY editStyle.ak "S">
+<!ENTITY resetDefaults "Alapértékek visszaállítása">
+<!ENTITY resetDefaults.ak "A">

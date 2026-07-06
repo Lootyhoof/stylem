@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Installi URL-ilt...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Stylemi kasutamise kohta lähema teabe saamiseks mine lehele">
-<!ENTITY nostylesend ".">
+<!ENTITY nostylesend "- või kirjuta uus stiil.">
 <!ENTITY sortenabled "Lubatud">
+<!ENTITY exportstyles "Ekspordi…">
+<!ENTITY importstyles "Impordi…">
 <!ENTITY sortname "Nimi">
 <!ENTITY sorttype "Tüüp">
 <!ENTITY writenew "Kirjuta uus stiil">
 <!ENTITY writenew.ak "K">
+<!ENTITY supportpage "Tugileht">

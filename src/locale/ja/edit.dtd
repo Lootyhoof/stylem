@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "XUL 名前空間を標準とする">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "更新URL:">
+
+<!ENTITY usercsssettings "オプション">
+<!ENTITY usercssmeta "UserCSSメタデータ">
+<!ENTITY theme "テーマ">
+<!ENTITY themeDefault "デフォルト">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

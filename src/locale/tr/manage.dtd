@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "URLlerden kurun…">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Bakın">
-<!ENTITY nostylesend "Stylem'i nasıl kullanacağınızla ilgili bilgiler.">
+<!ENTITY nostylesend "- veya yeni bir stil yazın.">
 <!ENTITY sortenabled "Etkinleştirildi">
+<!ENTITY exportstyles "Dışa aktar…">
+<!ENTITY importstyles "İçe aktar…">
 <!ENTITY sortname "Ad">
 <!ENTITY sorttype "Tip">
 <!ENTITY writenew "Yeni Stil Yazın">
 <!ENTITY writenew.ak "Y">
+<!ENTITY supportpage "Destek sayfası">

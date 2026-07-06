@@ -19,4 +19,14 @@
 <!ENTITY wraplines "Преламање текста">
 <!ENTITY wraplines.ak "Т">
 <!ENTITY xulnamespace "XUL именски простор као подразумевани">
-<!ENTITY xulnamespace.ak "М">
+<!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL ажурирања:">
+
+<!ENTITY usercsssettings "Опције">
+<!ENTITY usercssmeta "UserCSS метаподаци">
+<!ENTITY theme "Тема">
+<!ENTITY themeDefault "Подразумевано">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

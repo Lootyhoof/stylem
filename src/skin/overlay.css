@@ -14,7 +14,8 @@ toolbar[iconsize="small"] #stylem-toolbar-button:not([styles-applied~="site"]) {
 }
 
 /* Firefox 29+ sizes - 16 on the toolbar, 32 elsewhere */
-#stylem-toolbar-button[cui-areatype="menu-panel"], toolbarpaletteitem[place="palette"] > #stylem-toolbar-button {
+#stylem-toolbar-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #stylem-toolbar-button {
     list-style-image: url("chrome://stylem/skin/32.svg");
 }
 

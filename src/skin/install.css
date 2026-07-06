@@ -1,6 +1,139 @@
-#name-container {
-	margin-top: 0.5em;
+/* Stylem — UserCSS Install Tab */
+
+#install-view {
+	overflow: hidden;
 }
-#applies-to-container {
+
+#install-meta-pane {
+	min-width: 100px;
+	width: 300px;
 	overflow: auto;
+	padding: 4px 6px;
+}
+
+#install-splitter {
+	min-width: 4px;
+	cursor: ew-resize;
+}
+
+#install-code-pane {
+	flex: 1;
+	overflow: hidden;
+}
+
+#css-display {
+	border: none;
+	background-color: white;
+}
+
+#install-toolbar {
+	padding: 5px 0;
+}
+
+#install-toolbar button {
+	margin: 0 2px;
+}
+
+/* Already-installed view */
+.preprocessor-warning {
+	color: #c97a00;
+	font-style: italic;
+	font-size: smaller;
+}
+
+#already-installed-view {
+	padding: 40px;
+}
+
+.already-installed-message {
+	font-size: 1.2em;
+	margin-bottom: 12px;
+	font-weight: bold;
+	color: WindowText;
+}
+
+.install-confirm-label {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 6px 4px 8px;
+}
+
+.meta-key {
+	font-weight: bold;
+	color: GrayText;
+	min-width: 8em;
+	text-align: right;
+	margin-right: 6px;
+}
+
+.preprocessor-notification {
+	color: #c97a00;
+	font-style: italic;
+	font-size: smaller;
+	padding: 4px 8px;
+	border-bottom: 1px solid ThreeDShadow;
+	min-width: 0;
+	overflow-wrap: break-word;
+}
+
+#applies-box {
+	margin-bottom: 4px;
+}
+
+.applies-to-text {
+	font-style: italic;
+	max-width: 100%;
+}
+
+/* Variables */
+.var-row {
+	padding: 3px 2px;
+	border-bottom: 1px solid ThreeDShadow;
+}
+
+.var-row:last-child {
+	border-bottom: none;
+}
+
+.var-label {
+	font-weight: bold;
+	min-width: 10em;
+	margin-right: 8px;
+}
+
+.var-colorpicker {
+	margin-right: 4px;
+}
+
+.var-color-text {
+	width: 7em;
+	font-family: monospace;
+}
+
+.var-unit {
+	margin-left: 4px;
+	color: GrayText;
+}
+
+.var-range-value {
+	min-width: 4em;
+	text-align: right;
+	font-family: monospace;
+	color: GrayText;
+}
+
+.var-menulist {
+	min-width: 12em;
+}
+
+#vars-actions {
+	padding: 4px 0 0 0;
+	border-top: 1px solid ThreeDShadow;
+}
+
+/* Status/error area */
+#status-message {
+	color: red;
+	font-style: italic;
+	padding: 4px;
 }

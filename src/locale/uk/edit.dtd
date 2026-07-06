@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "П">
 <!ENTITY xulnamespace "Простір імен XUL">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL оновлення:">
+
+<!ENTITY usercsssettings "Налаштування">
+<!ENTITY usercssmeta "Метадані UserCSS">
+<!ENTITY theme "Тема">
+<!ENTITY themeDefault "За замовчуванням">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

@@ -19,4 +19,14 @@
 <!ENTITY wraplines "גלישת שורות">
 <!ENTITY wraplines.ak "ש">
 <!ENTITY xulnamespace "שם מרחב XUL כברירת מחדל">
-<!ENTITY xulnamespace.ak "מ">
+<!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "כתובת עדכון:">
+
+<!ENTITY usercsssettings "אפשרויות">
+<!ENTITY usercssmeta "מטא־נתוני UserCSS">
+<!ENTITY theme "ערכת נושא">
+<!ENTITY themeDefault "ברירת מחדל">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

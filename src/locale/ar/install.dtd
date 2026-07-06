@@ -1,6 +1,12 @@
 <!ENTITY entername "اعط هذا النمط اسم:">
 <!ENTITY install "تثبيت">
 <!ENTITY install.ak "I">
-<!ENTITY preview "عرض">
-<!ENTITY preview.ak "P">
-<!ENTITY title "تثبيت نمط المستخدم">
+
+<!ENTITY cancelInstall "إلغاء">
+<!ENTITY cancelInstall.ak "إ">
+<!ENTITY closeTab "إغلاق اللسان">
+<!ENTITY closeTab.ak "غ">
+<!ENTITY editStyle "تحرير النمط">
+<!ENTITY editStyle.ak "ح">
+<!ENTITY resetDefaults "إعادة تعيين إلى الافتراضي">
+<!ENTITY resetDefaults.ak "إ">

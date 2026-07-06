@@ -2,43 +2,84 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://stylem/skin/install.css" type="text/css"?>
 
-<!DOCTYPE dialog [
-	<!ENTITY % edit SYSTEM "chrome://stylem/locale/install.dtd">
+<!DOCTYPE window [
+	<!ENTITY % edit    SYSTEM "chrome://stylem/locale/edit.dtd">
+	<!ENTITY % install SYSTEM "chrome://stylem/locale/install.dtd">
 	%edit;
+	%install;
 ]>
 
-<dialog
-	id="stylish"
+<window
+	id="stylem-install"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	persist="screenX screenY width height sizemode"
-	width="500"
-	height="300"
-	buttons="accept,cancel,extra1"
-	onload="init()"
-	onunload="callCallback()"
-	title="&title;"
-	ondialogaccept="return save(true)"
-	ondialogextra1="preview();"
-	ondialogcancel="style.setPreview(false)"
-	buttonlabelaccept="&install;"
-	buttonaccesskeyaccept="&install.ak;"
-	buttonlabelextra1="&preview;"
-	buttonaccesskeyextra1="&preview.ak;">
+	onload="installTab.init()">
 
-	<script type="text/javascript" src="frame-utils.js"/>
-	<script type="text/javascript" src="common.js"/>
-	<script type="text/javascript" src="install.js"/>
+	<script type="text/javascript" src="chrome://stylem/content/frame-utils.js"/>
+	<script type="text/javascript" src="chrome://stylem/content/common.js"/>
+	<script type="text/javascript" src="chrome://stylem/content/usercss-parser.js"/>
+	<script type="text/javascript" src="chrome://stylem/content/install.js"/>
+
+	<html:link rel="icon" href="chrome://stylem/skin/16.svg" style="display:none"/>
 
 	<stringbundle id="strings" src="chrome://stylem/locale/install.properties"/>
 
-	<description id="install-intro"/>
-	<vbox id="applies-to-container" flex="1">
-		<html:ul id="applies-to" style="display: none"/>
-	</vbox>
-	<vbox id="name-container" style="display: none">
-		<label value="&entername;"/>
-		<textbox id="name"/>
+	<!-- Already-installed view -->
+	<vbox id="already-installed-view" hidden="true" flex="1" pack="center" align="center">
+		<label id="already-installed-label" class="already-installed-message"/>
+		<hbox>
+			<button id="edit-style-button" label="&editStyle;" accesskey="&editStyle.ak;" oncommand="installTab.editExistingStyle()"/>
+			<button id="close-tab-button" label="&closeTab;" accesskey="&closeTab.ak;" oncommand="installTab.closeTab()"/>
+		</hbox>
 	</vbox>
 
-</dialog>
+	<!-- Install view -->
+	<hbox id="install-view" flex="1" hidden="true">
+
+		<vbox id="install-meta-pane">
+			<hbox id="install-toolbar">
+				<button id="install-button" label="&install;" accesskey="&install.ak;" oncommand="installTab.install()"/>
+				<button id="preview-button" label="&preview;" accesskey="&preview.ak;" oncommand="installTab.preview()"/>
+				<button id="cancel-button" label="&cancelInstall;" accesskey="&cancelInstall.ak;" oncommand="installTab.closeTab()"/>
+			</hbox>
+
+			<separator orient="horizontal"/>
+
+			<label id="install-confirm" class="install-confirm-label"/>
+
+			<groupbox id="applies-box">
+				<caption label="&appliesto;"/>
+				<vbox id="applies-list">
+					<label id="applies-description"/>
+				</vbox>
+			</groupbox>
+
+			<groupbox id="vars-box" hidden="true">
+				<caption label="&usercsssettings;"/>
+				<grid id="vars-grid">
+					<columns>
+						<column style="min-width: 10em;"/>
+						<column flex="1"/>
+					</columns>
+					<rows id="vars-rows"/>
+				</grid>
+				<hbox id="vars-actions">
+					<button label="&resetDefaults;" accesskey="&resetDefaults.ak;" oncommand="installTab.resetVars()"/>
+				</hbox>
+			</groupbox>
+
+			<spacer flex="1"/>
+
+			<description id="status-message" hidden="true"/>
+		</vbox>
+
+		<splitter id="install-splitter" orient="horizontal" collapse="before" resizeafter="both"/>
+
+		<vbox id="install-code-pane" flex="1">
+			<html:div id="preprocessor-warning" class="preprocessor-notification" hidden="true"/>
+			<iframe id="css-display" type="content" flex="1" src="chrome://stylem/content/cm-editor.html?readonly"/>
+		</vbox>
+
+	</hbox>
+
+</window>

@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "تثبيت من الروابط...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "زيارة">
-<!ENTITY nostylesend "للمعلومات حول استخدام Stylem.">
+<!ENTITY nostylesend "- أو اكتب نمطًا جديدًا.">
 <!ENTITY sortenabled "تمكين">
+<!ENTITY exportstyles "تصدير…">
+<!ENTITY importstyles "استيراد…">
 <!ENTITY sortname "اسم">
 <!ENTITY sorttype "نوع">
 <!ENTITY writenew "كتابة نمط جديد">
 <!ENTITY writenew.ak "W">
+<!ENTITY supportpage "صفحة الدعم">

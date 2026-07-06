@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "默认 XUL 命名空间">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "更新 URL：">
+
+<!ENTITY usercsssettings "选项">
+<!ENTITY usercssmeta "UserCSS 元数据">
+<!ENTITY theme "主题">
+<!ENTITY themeDefault "默认">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

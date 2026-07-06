@@ -1,97 +1,186 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://stylem/skin/edit.css" type="text/css"?>
-<?xml-stylesheet href="chrome://browser/skin/devtools/common.css" type="text/css"?>
-<?xul-overlay href="chrome://global/content/editMenuOverlay.xul"?>
 
 <!DOCTYPE window [
-	<!ENTITY % edit SYSTEM "chrome://stylem/locale/edit.dtd">
-	<!ENTITY % internaledit SYSTEM "chrome://global/locale/editMenuOverlay.dtd">
+	<!ENTITY % edit    SYSTEM "chrome://stylem/locale/edit.dtd">
+	<!ENTITY % install SYSTEM "chrome://stylem/locale/install.dtd">
 	%edit;
-	%internaledit;
+	%install;
 ]>
 
 <window
-	class="theme-body"
 	id="stylem-edit"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	onload="init()"
+	persist="screenX screenY width height sizemode">
 
 	<html:link rel="icon" href="chrome://stylem/skin/16.svg" style="display:none"/>
 
-	<script type="text/javascript" src="chrome://global/content/globalOverlay.js"/>
 	<script type="text/javascript" src="chrome://stylem/content/edit.js"/>
 	<script type="text/javascript" src="chrome://stylem/content/frame-utils.js"/>
 	<script type="text/javascript" src="chrome://stylem/content/common.js"/>
-	<script type="text/javascript" src="chrome://browser/content/devtools/theme-switching.js"></script>
-	<script type="text/javascript" src="chrome://devtools/content/shared/theme-switching.js"></script>
-	<script type="text/javascript" src="chrome://global/content/devtools/theme-switching.js"></script>
-
-	<script type="text/javascript" src="chrome://itsalltext/content/API.js"/>
 
 	<stringbundle id="strings" src="chrome://stylem/locale/edit.properties"/>
 
 	<keyset>
 		<key id="save-key" modifiers="control" key="S" oncommand="save()"/>
-		<key id="find-key" modifiers="control" key="F" oncommand="document.getElementById('findbar').open();document.getElementById('findbar')._findField.focus()"/>
+		<key id="key-close" modifiers="control" key="W" oncommand="window.close()"/>
 	</keyset>
 
-	<menupopup id="sourceeditor-context">
-		<menuitem id="menu_undo"/>
-		<menuseparator/>
-		<menuitem id="menu_cut"/>
-		<menuitem id="menu_copy"/>
-		<menuitem id="menu_paste"/>
-		<menuitem id="menu_delete"/>
-		<menuseparator/>
-		<menuitem id="menu_selectAll" onclick="codeElementWrapper.setSelectionRange(0,codeElementWrapper.value.length)"/>
-	</menupopup>
+	<vbox id="main-area" flex="1">
 
-	<commandset id="editMenuCommands"/>
-
-	<vbox id="main-area" flex="1" class="theme-toolbar">
 		<hbox id="editor-tools">
-			<button class="devtools-toolbarbutton" id="save-button" label="&save;" accesskey="&save.ak;" oncommand="save()"/>
-			<button class="devtools-toolbarbutton" id="preview-button" label="&preview;" accesskey="&preview.ak;" oncommand="checkForErrors();preview()"/>
-			<button class="devtools-toolbarbutton" id="check-for-errors-button" label="&checkforerrors;" accesskey="&checkforerrors.ak;" oncommand="checkForErrors()"/>
+			<button id="save-button"
+				label="&save;"
+				accesskey="&save.ak;"
+				oncommand="save()"/>
+			<button id="preview-button"
+				label="&preview;"
+				accesskey="&preview.ak;"
+				oncommand="checkForErrors(); preview()"/>
+			<button id="check-for-errors-button"
+				label="&checkforerrors;"
+				accesskey="&checkforerrors.ak;"
+				oncommand="checkForErrors()"/>
 
-			<vbox class="devtools-separator"></vbox>
+			<separator orient="vertical"/>
 
-			<button class="devtools-toolbarbutton" label="&insert;" accesskey="&insert.ak;" type="menu">
+			<button label="&insert;" accesskey="&insert.ak;" type="menu">
 				<menupopup>
-					<menuitem id="insert-html" label="&htmlnamespace;" accesskey="&htmlnamespace.ak;" oncommand="insertCodeAtStart(CSSHTMLNS);"/>
-					<menuitem id="insert-xul" label="&xulnamespace;" accesskey="&xulnamespace.ak;" oncommand="insertCodeAtStart(CSSXULNS);"/>
-					<menuitem id="insert-chrome-folder" label="&chromefolder;" accesskey="&chromefolder.ak;" oncommand="insertChromePath()"/>
-					<menuitem id="insert-data-uri" label="&dataURI;" accesskey="&dataURI.ak;" oncommand="insertDataURI()"/>
+					<menuitem id="insert-html"
+						label="&htmlnamespace;"
+						accesskey="&htmlnamespace.ak;"
+						oncommand="insertCodeAtStart(CSSHTMLNS);"/>
+					<menuitem id="insert-xul"
+						label="&xulnamespace;"
+						accesskey="&xulnamespace.ak;"
+						oncommand="insertCodeAtStart(CSSXULNS);"/>
+					<menuitem id="insert-chrome-folder"
+						label="&chromefolder;"
+						accesskey="&chromefolder.ak;"
+						oncommand="insertChromePath()"/>
+					<menuitem id="insert-data-uri"
+						label="&dataURI;"
+						accesskey="&dataURI.ak;"
+						oncommand="insertDataURI()"/>
+				<menuseparator/>
+				<menuitem id="insert-usercss-meta"
+					label="&usercssmeta;"
+					oncommand="insertUserCSSMeta()"/>
 				</menupopup>
 			</button>
-			<button id="itsalltext" label="&openintexternaleditor;" accesskey="&openintexternaleditor.ak;" itsalltext-control="internal-code" itsalltext-extension=".css" style="display: none;"/>
-			<checkbox id="wrap-lines" label="&wraplines;" accesskey="&wraplines.ak;" oncommand="changeWordWrap(this.checked)" style="display: none"/>
+
+			<checkbox id="wrap-lines"
+				label="&wraplines;"
+				accesskey="&wraplines.ak;"
+				oncommand="changeWordWrap(this.checked)"
+				style="display: none"/>
+
+			<hbox id="theme-row" align="center" style="display: none">
+				<label value="&theme;:" control="theme-selector"/>
+				<menulist id="theme-selector" oncommand="changeTheme(this.value)">
+					<menupopup>
+						<menuitem value="default" label="&themeDefault;"/>
+						<menuitem value="eclipse" label="&themeEclipse;"/>
+						<menuitem value="monokai" label="&themeMonokai;"/>
+						<menuitem value="material" label="&themeMaterial;"/>
+						<menuitem value="dracula" label="&themeDracula;"/>
+					</menupopup>
+				</menulist>
+			</hbox>
+
+			<spacer flex="1"/>
+			<label id="editor-status" class="editor-status-label"/>
 		</hbox>
-		<separator orient="horizontal" class="devtools-horizontal-splitter"/>
-		<grid>
-			<columns>
-				<column/>
-				<column flex="1"/>
-			</columns>
-			<rows>
-				<row align="center">
-					<label control="name" accesskey="&name.ak;">&name;</label>
-					<textbox class="devtools-textinput" id="name" flex="1"/>
-				</row>
-				<row align="center" class="update-url-row">
-					<label control="update-url">Update URL</label>
-					<textbox class="devtools-textinput" id="update-url" flex="1"/>
-				</row>
-			</rows>
-		</grid>
-		<separator orient="horizontal" class="devtools-horizontal-splitter"/>
-		<deck id="editor" flex="1">
-			<textbox id="internal-code" multiline="true" flex="1"/>
-			<hbox id="sourceeditor" flex="1"/>
-		</deck>
-		<findbar class="theme-toolbar" id="findbar" browserid="internal-code"/>
-		<vbox class="theme-toolbar" id="errors" style="display:none;"/>
+
+		<hbox id="editor-split" flex="1">
+
+			<vbox id="meta-pane">
+				<grid id="style-meta-grid">
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row align="center">
+							<label control="name" accesskey="&name.ak;">&name;</label>
+							<textbox id="name" flex="1"/>
+						</row>
+						<row align="center" class="update-url-row">
+							<label control="update-url">&updateurl;</label>
+							<textbox id="update-url" flex="1"/>
+						</row>
+					</rows>
+				</grid>
+
+			<groupbox id="applies-to-box" collapsed="false">
+					<caption label="&appliesto;"/>
+					<hbox id="applies-to-bar" align="start">
+						<vbox id="applies-to-summary" flex="1" class="applies-summary"/>
+						<button label="&editappliesto;" oncommand="toggleAppliesToEditor()"/>
+					</hbox>
+					<vbox id="applies-to-editor" hidden="true">
+						<description>&appliestodesc;</description>
+						<richlistbox id="applies-rules" flex="1" style="min-height: 10em; overflow: auto;"/>
+						<hbox>
+							<menulist id="new-rule-type">
+								<menupopup>
+									<menuitem value="url" label="URL"/>
+									<menuitem value="url-prefix" label="URL Prefix"/>
+									<menuitem value="domain" label="Domain"/>
+									<menuitem value="regexp" label="RegExp"/>
+								</menupopup>
+							</menulist>
+							<textbox id="new-rule-value" flex="1"/>
+							<button label="&addappliesrule;" oncommand="addAppliesRule()"/>
+						</hbox>
+					</vbox>
+				</groupbox>
+
+			<groupbox id="usercss-vars-section" hidden="true">
+				<caption label="&usercsssettings;"/>
+				<grid id="usercss-vars-container">
+					<columns>
+						<column style="min-width: 10em;"/>
+						<column flex="1"/>
+					</columns>
+					<rows id="usercss-vars-rows"/>
+				</grid>
+				<hbox id="vars-actions">
+					<button label="&resetDefaults;" accesskey="&resetDefaults.ak;" oncommand="resetVars()"/>
+				</hbox>
+			</groupbox>
+
+				<spacer flex="1"/>
+			</vbox>
+
+			<splitter id="meta-splitter" orient="horizontal" collapse="before" resizeafter="both"/>
+
+			<!--
+				Code editor: CodeMirror running inside a same-package chrome iframe.
+				edit.js drives it through contentWindow.stylemEditor (see cm-editor.html).
+				If CodeMirror files haven't been vendored, #cm-fallback (a plain textbox)
+				is shown instead so the editor window still functions, just without the
+				rich editing features.
+			-->
+			<vbox id="cm-frame-box" flex="3" style="min-height: 400px; display: flex; flex-direction: column;">
+				<html:div id="preprocessor-warning" class="preprocessor-notification" hidden="true"/>
+				<html:iframe id="cm-frame"
+					src="chrome://stylem/content/cm-editor.html"
+					style="border: none; width: 100%; flex: 1; display: block; min-height: 0;"/>
+				<textbox id="cm-fallback"
+					multiline="true"
+					hidden="true"
+					style="min-height: 400px; flex: 1;"/>
+			</vbox>
+
+		</hbox>
+
+		<!-- CSS error display -->
+		<vbox id="errors" hidden="true"/>
+
 	</vbox>
 
 </window>

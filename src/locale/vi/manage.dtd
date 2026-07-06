@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Install from URLs...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Vào">
-<!ENTITY nostylesend "để biết thêm thông tin về cách sử dụng Stylem.">
+<!ENTITY nostylesend "- hoặc viết style mới.">
 <!ENTITY sortenabled "Bật">
+<!ENTITY exportstyles "Xuất…">
+<!ENTITY importstyles "Nhập…">
 <!ENTITY sortname "Tên">
 <!ENTITY sorttype "Kiểu">
 <!ENTITY writenew "Viết Style mới">
 <!ENTITY writenew.ak "V">
+<!ENTITY supportpage "Trang hỗ trợ">

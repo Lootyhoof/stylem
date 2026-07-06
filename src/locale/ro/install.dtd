@@ -1,6 +1,12 @@
 <!ENTITY entername "Da-ți un nume stilului:">
 <!ENTITY install "Instalează">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Previzualizare">
-<!ENTITY preview.ak "P">
-<!ENTITY title "Instalați stil utilizator">
+
+<!ENTITY cancelInstall "Anulare">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Închide fila">
+<!ENTITY closeTab.ak "Î">
+<!ENTITY editStyle "Editare stil">
+<!ENTITY editStyle.ak "E">
+<!ENTITY resetDefaults "Resetare la valori implicite">
+<!ENTITY resetDefaults.ak "R">

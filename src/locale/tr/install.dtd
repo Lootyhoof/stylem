@@ -1,6 +1,12 @@
 <!ENTITY entername "Bu stile bir ad verin:">
 <!ENTITY install "Kurun">
 <!ENTITY install.ak "K">
-<!ENTITY preview "Önizleme">
-<!ENTITY preview.ak "Ö">
-<!ENTITY title "Kullanıcı stili kurun">
+
+<!ENTITY cancelInstall "İptal">
+<!ENTITY cancelInstall.ak "İ">
+<!ENTITY closeTab "Sekmeyi Kapat">
+<!ENTITY closeTab.ak "S">
+<!ENTITY editStyle "Stili Düzenle">
+<!ENTITY editStyle.ak "S">
+<!ENTITY resetDefaults "Varsayılanlara sıfırla">
+<!ENTITY resetDefaults.ak "V">

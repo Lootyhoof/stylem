@@ -1,6 +1,12 @@
 <!ENTITY entername "Anna sellele stiilile nimi:">
 <!ENTITY install "Installi">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Eelvaade">
-<!ENTITY preview.ak "E">
-<!ENTITY title "Kasutaja stiili installimine">
+
+<!ENTITY cancelInstall "Loobu">
+<!ENTITY cancelInstall.ak "L">
+<!ENTITY closeTab "Sulge kaart">
+<!ENTITY closeTab.ak "S">
+<!ENTITY editStyle "Redigeeri stiili">
+<!ENTITY editStyle.ak "R">
+<!ENTITY resetDefaults "Lähtesta vaikeväärtused">
+<!ENTITY resetDefaults.ak "L">

@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Установка стилей по URL адресам…">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Для информации о том, как использовать Stylem, посетите">
-<!ENTITY nostylesend ".">
+<!ENTITY nostylesend "- или напишите новый стиль.">
 <!ENTITY sortenabled "Состояние">
+<!ENTITY exportstyles "Экспорт…">
+<!ENTITY importstyles "Импорт…">
 <!ENTITY sortname "Название">
 <!ENTITY sorttype "Тип">
 <!ENTITY writenew "Создать новый стиль">
 <!ENTITY writenew.ak "С">
+<!ENTITY supportpage "Страница поддержки">

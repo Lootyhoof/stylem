@@ -1,6 +1,12 @@
 <!ENTITY entername "Giv denne style et navn:">
 <!ENTITY install "Installer">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Smugkig">
-<!ENTITY preview.ak "S">
-<!ENTITY title "Installer bruger style">
+
+<!ENTITY cancelInstall "Annuller">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Luk fanen">
+<!ENTITY closeTab.ak "L">
+<!ENTITY editStyle "Redigér stil">
+<!ENTITY editStyle.ak "R">
+<!ENTITY resetDefaults "Nulstil til standard">
+<!ENTITY resetDefaults.ak "N">

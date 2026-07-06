@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "XUL مساحة الاسم افتراضياً">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "رابط التحديث:">
+
+<!ENTITY usercsssettings "خيارات">
+<!ENTITY usercssmeta "بيانات UserCSS الوصفية">
+<!ENTITY theme "السمة">
+<!ENTITY themeDefault "الافتراضية">
+<!ENTITY themeEclipse "إكليبس">
+<!ENTITY themeMonokai "مونوكاي">
+<!ENTITY themeMaterial "ماتيريال">
+<!ENTITY themeDracula "دراكولا">

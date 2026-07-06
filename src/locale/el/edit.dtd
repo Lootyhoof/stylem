@@ -19,4 +19,14 @@
 <!ENTITY wraplines "Γραμμές Αναδίπλωσης">
 <!ENTITY wraplines.ak "Β">
 <!ENTITY xulnamespace "XUL ονομάτων ως προεπιλογή">
-<!ENTITY xulnamespace.ak "Χ">
+<!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL ενημέρωσης:">
+
+<!ENTITY usercsssettings "Επιλογές">
+<!ENTITY usercssmeta "Μεταδεδομένα UserCSS">
+<!ENTITY theme "Θέμα">
+<!ENTITY themeDefault "Προεπιλογή">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

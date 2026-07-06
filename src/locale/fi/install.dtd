@@ -1,6 +1,12 @@
 <!ENTITY entername "Anna tälle teemalle nimi:">
 <!ENTITY install "Asenna">
 <!ENTITY install.ak "A">
-<!ENTITY preview "Esikatsele">
-<!ENTITY preview.ak "E">
-<!ENTITY title "Asenna tyyli">
+
+<!ENTITY cancelInstall "Peruuta">
+<!ENTITY cancelInstall.ak "P">
+<!ENTITY closeTab "Sulje välilehti">
+<!ENTITY closeTab.ak "S">
+<!ENTITY editStyle "Muokkaa tyyliä">
+<!ENTITY editStyle.ak "M">
+<!ENTITY resetDefaults "Palauta oletusarvoihin">
+<!ENTITY resetDefaults.ak "P">

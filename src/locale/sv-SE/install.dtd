@@ -1,6 +1,12 @@
 <!ENTITY entername "Ge denna stil ett namn:">
 <!ENTITY install "Installera">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Förhandsgranska">
-<!ENTITY preview.ak "F">
-<!ENTITY title "Installera användar-stil">
+
+<!ENTITY cancelInstall "Avbryt">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Stäng flik">
+<!ENTITY closeTab.ak "S">
+<!ENTITY editStyle "Redigera stil">
+<!ENTITY editStyle.ak "R">
+<!ENTITY resetDefaults "Återställ till standard">
+<!ENTITY resetDefaults.ak "Å">

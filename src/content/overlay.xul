@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <?xml-stylesheet href="chrome://stylem/skin/overlay.css" type="text/css"?>
 
 <!DOCTYPE overlay [
@@ -22,37 +21,105 @@
 	</stringbundleset>
 
 	<popupset id="mainPopupSet">
-		<menupopup id="stylem-popup" onpopupshowing="stylishOverlay.popupShowing(event)" onpopuphiding="stylishOverlay.popupHiding(event)" position="after_start">
-			<menuitem id="stylem-manage" label="&managestyles;" accesskey="&managestyles.ak;" oncommand="stylishOverlay.openManage()"/>
-			<menuitem id="stylem-turn-on" label="&turnon;" accesskey="&turnon.ak;" oncommand="stylishOverlay.turnOnOff(true)"/>
-			<menuitem id="stylem-turn-off" label="&turnoff;" accesskey="&turnoff.ak;" oncommand="stylishOverlay.turnOnOff(false)"/>
-			<menuitem id="stylem-add-file" label="&addfile;" accesskey="&addfile.ak;" oncommand="stylishOverlay.installFromFile(event)" style="display: none"/>
-			<menuitem id="stylem-find-styles" label="&findstylebrowser;" accesskey="&findstylebrowser.ak;" oncommand="stylishOverlay.findStyle(event)" onclick="checkForMiddleClick(this, event)"/>
-			<menu id="stylem-write-style-menu" label="&writestyle;" accesskey="&writestyle.ak;">
-				<menupopup onpopupshowing="stylishOverlay.writeStylePopupShowing(event)" onpopuphiding="stylishCommon.clearAllMenuItems(event)"/>
+		<menupopup id="stylem-popup"
+			onpopupshowing="stylishOverlay.popupShowing(event)"
+			onpopuphiding="stylishOverlay.popupHiding(event)"
+			position="after_start">
+			<menuitem id="stylem-manage"
+				label="&managestyles;"
+				accesskey="&managestyles.ak;"
+				oncommand="stylishOverlay.openManage()"/>
+			<menuitem id="stylem-turn-on"
+				label="&turnon;"
+				accesskey="&turnon.ak;"
+				oncommand="stylishOverlay.turnOnOff(true)"/>
+			<menuitem id="stylem-turn-off"
+				label="&turnoff;"
+				accesskey="&turnoff.ak;"
+				oncommand="stylishOverlay.turnOnOff(false)"/>
+			<menuitem id="stylem-add-file"
+				label="&addfile;"
+				accesskey="&addfile.ak;"
+				oncommand="stylishOverlay.installFromFile(event)"
+				style="display: none"/>
+			<menuitem id="stylem-find-styles"
+				label="&findstylebrowser;"
+				accesskey="&findstylebrowser.ak;"
+				oncommand="stylishOverlay.findStyle(event)"
+				onclick="checkForMiddleClick(this, event)"/>
+			<menu id="stylem-write-style-menu"
+				label="&writestyle;"
+				accesskey="&writestyle.ak;">
+				<menupopup
+					onpopupshowing="stylishOverlay.writeStylePopupShowing(event)"
+					onpopuphiding="stylishCommon.clearAllMenuItems(event)"/>
 			</menu>
 		</menupopup>
-		<menupopup id="stylem-style-context" onpopupshowing="stylishOverlay.showApplicableContextItems(event)">
-			<menuitem id="stylem-style-context-enable" label="&cmd.enable.label;" accesskey="&cmd.enable.accesskey;" oncommand="stylishOverlay.contextSetEnabled(true)" class="menuitem-non-iconic" default="true"/>
-			<menuitem id="stylem-style-context-disable" label="&cmd.disable.label;" accesskey="&cmd.disable.accesskey;" oncommand="stylishOverlay.contextSetEnabled(false)" class="menuitem-non-iconic" default="true"/>
-			<menuitem id="stylem-style-context-edit" label="&editstyle;" accesskey="&editstyle.ak;" oncommand="stylishOverlay.contextEdit()" class="menuitem-non-iconic"/>
-			<menuitem id="stylem-style-context-uninstall" label="&cmd.uninstall.label;" accesskey="&cmd.uninstall2.accesskey;" oncommand="stylishOverlay.contextDelete()" class="menuitem-non-iconic"/>
+
+		<menupopup id="stylem-style-context"
+			onpopupshowing="stylishOverlay.showApplicableContextItems(event)">
+			<menuitem id="stylem-style-context-enable"
+				label="&cmd.enable.label;"
+				accesskey="&cmd.enable.accesskey;"
+				oncommand="stylishOverlay.contextSetEnabled(true)"
+				class="menuitem-non-iconic"
+				default="true"/>
+			<menuitem id="stylem-style-context-disable"
+				label="&cmd.disable.label;"
+				accesskey="&cmd.disable.accesskey;"
+				oncommand="stylishOverlay.contextSetEnabled(false)"
+				class="menuitem-non-iconic"
+				default="true"/>
+			<menuitem id="stylem-style-context-edit"
+				label="&editstyle;"
+				accesskey="&editstyle.ak;"
+				oncommand="stylishOverlay.contextEdit()"
+				class="menuitem-non-iconic"/>
+			<menuitem id="stylem-style-context-uninstall"
+				label="&cmd.uninstall.label;"
+				accesskey="&cmd.uninstall2.accesskey;"
+				oncommand="stylishOverlay.contextDelete()"
+				class="menuitem-non-iconic"/>
 		</menupopup>
+
 		<tooltip id="stylem-tooltip">
 			<label class="tooltip-label"/>
 		</tooltip>
 	</popupset>
 
-	<!-- for tb single message window -->
+		<!-- for tb single message window -->
 	<popupset insertafter="mailContext">
-		<menupopup id="stylem-popup" onpopupshowing="stylishOverlay.popupShowing(event)" onpopuphiding="stylishOverlay.popupHiding(event)" position="after_start">
-			<menuitem id="stylem-manage" label="&managestyles;" accesskey="&managestyles.ak;" oncommand="stylishOverlay.openManage()"/>
-			<menuitem id="stylem-turn-on" label="&turnon;" accesskey="&turnon.ak;" oncommand="stylishOverlay.turnOnOff(true)"/>
-			<menuitem id="stylem-turn-off" label="&turnoff;" accesskey="&turnoff.ak;" oncommand="stylishOverlay.turnOnOff(false)"/>
-			<menuitem id="stylem-add-file" label="&addfile;" accesskey="&addfile.ak;" oncommand="stylishOverlay.installFromFile(event)"/>
-			<menuitem id="stylem-find-styles" label="&findstylebrowser;" accesskey="&findstylebrowser.ak;" oncommand="stylishOverlay.findStyle(event)" onclick="checkForMiddleClick(this, event)"/>
-			<menu id="stylem-write-style-menu" label="&writestyle;" accesskey="&writestyle.ak;">
-				<menupopup onpopupshowing="stylishOverlay.writeStylePopupShowing(event)" onpopuphiding="stylishCommon.clearAllMenuItems(event)"/>
+		<menupopup id="stylem-popup" 
+		onpopupshowing="stylishOverlay.popupShowing(event)" 
+		onpopuphiding="stylishOverlay.popupHiding(event)" 
+		position="after_start">
+			<menuitem id="stylem-manage" 
+				label="&managestyles;" 
+				accesskey="&managestyles.ak;" 
+				oncommand="stylishOverlay.openManage()"/>
+			<menuitem id="stylem-turn-on" 
+				label="&turnon;" 
+				accesskey="&turnon.ak;" 
+				oncommand="stylishOverlay.turnOnOff(true)"/>
+			<menuitem id="stylem-turn-off" 
+				label="&turnoff;" 
+				accesskey="&turnoff.ak;" 
+				oncommand="stylishOverlay.turnOnOff(false)"/>
+			<menuitem id="stylem-add-file" 
+				label="&addfile;" 
+				accesskey="&addfile.ak;" 
+				oncommand="stylishOverlay.installFromFile(event)"/>
+			<menuitem id="stylem-find-styles" 
+				label="&findstylebrowser;" 
+				accesskey="&findstylebrowser.ak;" 
+				oncommand="stylishOverlay.findStyle(event)" 
+				onclick="checkForMiddleClick(this, event)"/>
+			<menu id="stylem-write-style-menu" 
+				label="&writestyle;" 
+				accesskey="&writestyle.ak;">
+				<menupopup 
+				onpopupshowing="stylishOverlay.writeStylePopupShowing(event)" 
+				onpopuphiding="stylishCommon.clearAllMenuItems(event)"/>
 			</menu>
 		</menupopup>
 		<menupopup id="stylem-style-context" onpopupshowing="stylishOverlay.showApplicableContextItems(event)">
@@ -67,11 +134,25 @@
 	</popupset>
 
 	<toolbarpalette id="BrowserToolbarPalette">
-		<toolbarbutton id="stylem-toolbar-button" label="&stylem;" popup="stylem-popup" tooltip="stylem-tooltip" onclick="stylishOverlay.handleStatusClick(event)" class="toolbarbutton-1" type="menu"/>
+		<toolbarbutton
+			id="stylem-toolbar-button"
+			label="&stylem;"
+			popup="stylem-popup"
+			tooltip="stylem-tooltip"
+			onclick="stylishOverlay.handleStatusClick(event)"
+			class="toolbarbutton-1"
+			type="menu"/>
 	</toolbarpalette>
 
 	<toolbarpalette id="MailToolbarPalette">
-		<toolbarbutton id="stylem-toolbar-button" label="&stylem;" popup="stylem-popup" tooltip="stylem-tooltip" onclick="stylishOverlay.handleStatusClick(event)" class="toolbarbutton-1" type="menu"/>
+		<toolbarbutton 
+			id="stylem-toolbar-button" 
+			label="&stylem;" 
+			popup="stylem-popup" 
+			tooltip="stylem-tooltip" 
+			onclick="stylishOverlay.handleStatusClick(event)" 
+			class="toolbarbutton-1" 
+			type="menu"/>
 	</toolbarpalette>
 
 </overlay>

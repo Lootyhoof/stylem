@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Install from URLs...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Látogassa meg">
-<!ENTITY nostylesend "információért, hogy hogyan használható a Stylem.">
+<!ENTITY nostylesend "- vagy írj egy új stílust.">
 <!ENTITY sortenabled "Engedélyezve">
+<!ENTITY exportstyles "Exportálás…">
+<!ENTITY importstyles "Importálás…">
 <!ENTITY sortname "Név">
 <!ENTITY sorttype "Típus">
 <!ENTITY writenew "Új stílusfájl készítése">
 <!ENTITY writenew.ak "s">
+<!ENTITY supportpage "Támogatási oldal">

@@ -1,6 +1,12 @@
 <!ENTITY entername "このスタイルに名前を付けてください:">
 <!ENTITY install "インストール">
 <!ENTITY install.ak "I">
-<!ENTITY preview "お試し">
-<!ENTITY preview.ak "P">
-<!ENTITY title "ユーザースタイルをインストール">
+
+<!ENTITY cancelInstall "キャンセル">
+<!ENTITY cancelInstall.ak "キ">
+<!ENTITY closeTab "タブを閉じる">
+<!ENTITY closeTab.ak "閉">
+<!ENTITY editStyle "スタイルを編集">
+<!ENTITY editStyle.ak "編">
+<!ENTITY resetDefaults "デフォルトにリセット">
+<!ENTITY resetDefaults.ak "デ">

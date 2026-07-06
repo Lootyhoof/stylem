@@ -1,6 +1,12 @@
 <!ENTITY entername "Bigyan ang estilong ito ng pangalan:">
 <!ENTITY install "I-install">
 <!ENTITY install.ak "I">
-<!ENTITY preview "I-preview">
-<!ENTITY preview.ak "P">
-<!ENTITY title "I-install ang estilo ng user">
+
+<!ENTITY cancelInstall "Kanselahin">
+<!ENTITY cancelInstall.ak "K">
+<!ENTITY closeTab "Isara ang Tab">
+<!ENTITY closeTab.ak "I">
+<!ENTITY editStyle "Baguhin ang Style">
+<!ENTITY editStyle.ak "B">
+<!ENTITY resetDefaults "Ibalik sa mga default">
+<!ENTITY resetDefaults.ak "I">

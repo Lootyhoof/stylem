@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Von URL installieren...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Besuchen Sie">
-<!ENTITY nostylesend "für Informationen über die Verwendung von Stylem.">
+<!ENTITY nostylesend "- oder erstelle einen neuen Style.">
 <!ENTITY sortenabled "Aktiviert">
+<!ENTITY exportstyles "Exportieren…">
+<!ENTITY importstyles "Importieren…">
 <!ENTITY sortname "Name">
 <!ENTITY sorttype "Typ">
 <!ENTITY writenew "Neuen Style erstellen">
 <!ENTITY writenew.ak "N">
+<!ENTITY supportpage "Support-Seite">

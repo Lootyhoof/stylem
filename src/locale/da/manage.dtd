@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Install from URLs...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Besøg">
-<!ENTITY nostylesend "For information omkring brugen af Stylem.">
+<!ENTITY nostylesend "- eller skriv en ny style.">
 <!ENTITY sortenabled "Aktiveret">
+<!ENTITY exportstyles "Eksporter…">
+<!ENTITY importstyles "Importer…">
 <!ENTITY sortname "Navn">
 <!ENTITY sorttype "Type">
 <!ENTITY writenew "Skriv en ny style">
 <!ENTITY writenew.ak "S">
+<!ENTITY supportpage "Supportside">

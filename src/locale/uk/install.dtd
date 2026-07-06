@@ -1,6 +1,12 @@
 <!ENTITY entername "Дайте цьому стилю назву:">
 <!ENTITY install "Встановити">
 <!ENTITY install.ak "В">
-<!ENTITY preview "Переглянути">
-<!ENTITY preview.ak "П">
-<!ENTITY title "Встановити користувацький стиль">
+
+<!ENTITY cancelInstall "Скасувати">
+<!ENTITY cancelInstall.ak "С">
+<!ENTITY closeTab "Закрити вкладку">
+<!ENTITY closeTab.ak "З">
+<!ENTITY editStyle "Редагувати стиль">
+<!ENTITY editStyle.ak "Р">
+<!ENTITY resetDefaults "Скинути до стандартних">
+<!ENTITY resetDefaults.ak "С">

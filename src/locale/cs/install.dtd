@@ -1,6 +1,12 @@
 <!ENTITY entername "Pojmenujte tento styl:">
 <!ENTITY install "Instalovat">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Náhled">
-<!ENTITY preview.ak "N">
-<!ENTITY title "Instalovat uživatelský styl">
+
+<!ENTITY cancelInstall "Zrušit">
+<!ENTITY cancelInstall.ak "Z">
+<!ENTITY closeTab "Zavřít panel">
+<!ENTITY closeTab.ak "Z">
+<!ENTITY editStyle "Upravit styl">
+<!ENTITY editStyle.ak "U">
+<!ENTITY resetDefaults "Obnovit výchozí">
+<!ENTITY resetDefaults.ak "O">

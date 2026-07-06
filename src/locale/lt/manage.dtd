@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Install from URLs...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Aplankykite">
-<!ENTITY nostylesend "informacijai apie tai kaip naudoti Stylem.">
+<!ENTITY nostylesend "- arba parašykite naują stilių.">
 <!ENTITY sortenabled "Būsena">
+<!ENTITY exportstyles "Eksportuoti…">
+<!ENTITY importstyles "Importuoti…">
 <!ENTITY sortname "Pavadinimas">
 <!ENTITY sorttype "Tipas">
 <!ENTITY writenew "Kurti naują stilių">
 <!ENTITY writenew.ak "N">
+<!ENTITY supportpage "Pagalbos puslapis">

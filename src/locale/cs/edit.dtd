@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "a">
 <!ENTITY xulnamespace "Jmenný prostor XUL jako výchozí">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "Adresa URL aktualizace:">
+
+<!ENTITY usercsssettings "Možnosti">
+<!ENTITY usercssmeta "Metadata UserCSS">
+<!ENTITY theme "Motiv">
+<!ENTITY themeDefault "Výchozí">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

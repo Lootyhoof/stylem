@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Asenna tyyli...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Vieraile sivulla">
-<!ENTITY nostylesend "saadaksesi tietoa kuinka käyttää Stylemia.">
+<!ENTITY nostylesend "- tai kirjoita uusi tyyli.">
 <!ENTITY sortenabled "Käytössä">
+<!ENTITY exportstyles "Vie…">
+<!ENTITY importstyles "Tuo…">
 <!ENTITY sortname "Nimi">
 <!ENTITY sorttype "Tyyppi">
 <!ENTITY writenew "Kirjoita uusi tyyli">
 <!ENTITY writenew.ak "K">
+<!ENTITY supportpage "Tukisivu">

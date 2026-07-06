@@ -1,6 +1,12 @@
 <!ENTITY entername "Dajte temu slogu ime:">
 <!ENTITY install "Namesti">
 <!ENTITY install.ak "N">
-<!ENTITY preview "Predogled">
-<!ENTITY preview.ak "P">
-<!ENTITY title "Namesti slog">
+
+<!ENTITY cancelInstall "Prekliči">
+<!ENTITY cancelInstall.ak "P">
+<!ENTITY closeTab "Zapri zavihek">
+<!ENTITY closeTab.ak "Z">
+<!ENTITY editStyle "Uredi slog">
+<!ENTITY editStyle.ak "U">
+<!ENTITY resetDefaults "Ponastavi na privzeto">
+<!ENTITY resetDefaults.ak "P">

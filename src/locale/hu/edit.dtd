@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "r">
 <!ENTITY xulnamespace "XUL névtér beállítása alapértelmezettként">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "Frissítési URL:">
+
+<!ENTITY usercsssettings "Beállítások">
+<!ENTITY usercssmeta "UserCSS metaadatok">
+<!ENTITY theme "Téma">
+<!ENTITY themeDefault "Alapértelmezett">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

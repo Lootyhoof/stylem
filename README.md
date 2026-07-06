@@ -1,40 +1,60 @@
-Stylem - a user style manager for Pale Moon, Interlink, SeaMonkey, and other Mozilla-based software. Install styles from [userstyles.org](https://userstyles.org/) to change how web pages and the application look.
+# Stylem
 
-Contributing
-------------
+A UserCSS-compatible user style manager for Pale Moon and other Mozilla-based
+software. Install, write, and manage styles that change the appearance of web
+pages and applications.
 
-Pull requests are welcome. Translation work can be done with a pull request.
+## Features
 
-Building
-------------
+- **[Style editor](docs/editor.md)** - syntax highlighting, error checking,
+  preview, applies-to rule editor, and CSS namespace/image utilities
+- **[UserCSS support](docs/usercss.md)** - metadata parsing, variable rendering,
+  and install flows for `.user.css` files
+- **[URL matching](docs/url-matching.md)** - reference for `@-moz-document`
+  rules (domain, URL, URL prefix, regexp)
+- **[Advanced techniques](docs/advanced.md)** - overwriting page styles,
+  `!important` and specificity, AGENT_SHEET, replacing images, element
+  selectors, DOM Inspector tool
+- **Install from userstyles.world** or any raw `.user.css` URL
+- **Import/export** styles to/from a JSON backup file
+- **Per-style and bulk update checking** from `about:addons`
 
-Simply download the contents of the "src" folder and pack the contents into a .zip file. Then, rename the file to .xpi and drag into the browser.
+## Quick start
 
-On Unix systems (or Windows 10, with [WSL](https://docs.microsoft.com/en-us/windows/wsl/about)) you can optionally run `build.sh` instead. Running this as-is will produce a .xpi file ending in `-dev`, and if run from the command line and appending a number (e.g. `./build.sh 2`) will append that number to the filename instead.
+1. Install Stylem from the
+   [Pale Moon Add-Ons Site](https://addons.palemoon.org/addon/stylem/).
+2. Click the Stylem toolbar button to view your installed styles.
+3. Select **Write new style** to create one.
+4. Browse for styles at [userstyles.world](https://userstyles.world/).
 
-Information on producing the `xpt` files featured here using the `idl` files in `src/idl/` can be found on [UDN](https://udn.realityripple.com/docs/Mozilla/Tech/XPIDL/Generating_xpt_on_Windows).
+See the [getting-started guide](docs/getting-started.md) for more detail.
 
-Download
-------------
+## Installing from XPI
 
-You can grab the latest release either from the Releases section of this repository, or the [Pale Moon Add-Ons Site](https://addons.palemoon.org/addon/stylem/). Please ensure that `Stylish` is disabled or removed (if installed) before installing to prevent any issues. Stylem will pick up any installed styles.
+Download the latest `.xpi` from the
+[Releases](https://github.com/Lootyhoof/stylem/releases) page and drag it into
+the browser. Ensure **Stylish** is disabled or removed first - Stylem will
+pick up any existing styles automatically.
 
-License
--------
+## Building
 
-Copyright (C) 2005-2014 Jason Barnabe <jason.barnabe@gmail.com>
+```sh
+git clone https://github.com/Lootyhoof/stylem
+cd stylem
+./build.sh          # produces stylem-dev-pm.xpi
+./build.sh 42       # produces stylem-42-pm.xpi
+```
 
-Copyright (C) 2018-2022 Stylem Contributors
+The script zips the contents of `src/` into an `.xpi` file.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+## Contributing
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Pull requests are welcome. Translations can be submitted via pull request -
+see the existing locale files under `src/locale/` as a template.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## License
+
+Copyright (C) 2005–2014 Jason Barnabe &lt;jason.barnabe@gmail.com&gt;  
+Copyright (C) 2018–2026 Stylem Contributors
+
+GPLv3 - see [COPYING](COPYING) for the full text.

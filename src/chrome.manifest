@@ -1,14 +1,20 @@
 content	stylem	content/
 
+# Addon manager overlay - target both about:addons and the chrome URL
 overlay	about:addons	chrome://stylem/content/manage-addons.xul
 overlay	chrome://mozapps/content/extensions/extensions.xul	chrome://stylem/content/manage-addons.xul
 
+# Browser overlay
 overlay	chrome://browser/content/browser.xul	chrome://stylem/content/overlay.xul
-
-overlay chrome://inspector/content/viewers/dom/dom.xul	chrome://stylem/content/domiOverlay.xul
 overlay	chrome://navigator/content/navigator.xul	chrome://stylem/content/overlay.xul
-overlay chrome://messenger/content/mailWindowOverlay.xul	chrome://stylem/content/overlay.xul
 
+# Mail client overlay
+overlay	chrome://messenger/content/mailWindowOverlay.xul	chrome://stylem/content/overlay.xul
+
+# DOM Inspector overlay
+overlay	chrome://inspector/content/viewers/dom/dom.xul	chrome://stylem/content/domiOverlay.xul
+
+# Locales
 locale	stylem	ar	locale/ar/
 locale	stylem	cs	locale/cs/
 locale	stylem	da	locale/da/
@@ -25,12 +31,12 @@ locale	stylem	he	locale/he/
 locale	stylem	hu	locale/hu/
 locale	stylem	it	locale/it/
 locale	stylem	ja	locale/ja/
-locale	stylem ko	locale/ko/
-locale	stylem lt	locale/lt/
+locale	stylem	ko	locale/ko/
+locale	stylem	lt	locale/lt/
 locale	stylem	nl	locale/nl/
 locale	stylem	pl	locale/pl/
 locale	stylem	pt-BR	locale/pt-BR/
-locale  stylem pt-PT locale/pt-PT/
+locale	stylem	pt-PT	locale/pt-PT/
 locale	stylem	ro	locale/ro/
 locale	stylem	ru	locale/ru/
 locale	stylem	sl	locale/sl/
@@ -43,26 +49,24 @@ locale	stylem	vi	locale/vi/
 locale	stylem	zh-CN	locale/zh-CN/
 locale	stylem	zh-TW	locale/zh-TW/
 
-interfaces components/stylishStyle.xpt
-component {152f4e0f-2b9a-4bb8-b058-736b687f7555} components/stylishStyle.js
-contract @stylem.ext/style;1 {152f4e0f-2b9a-4bb8-b058-736b687f7555}
+# XPCOM components
+component	{152f4e0f-2b9a-4bb8-b058-736b687f7555}	components/stylishStyle.js
+contract	@stylem.ext/style;1	{152f4e0f-2b9a-4bb8-b058-736b687f7555}
 
-interfaces components/stylishDataSource.xpt
-component {034c0c63-b55e-4022-a291-a542db4ea930} components/stylishDataSource.js
-contract @stylem.ext/stylem-data-source;1 {034c0c63-b55e-4022-a291-a542db4ea930}
+component	{034c0c63-b55e-4022-a291-a542db4ea930}	components/stylishDataSource.js
+contract	@stylem.ext/stylem-data-source;1	{034c0c63-b55e-4022-a291-a542db4ea930}
 
-component {9682c01e-071a-45c4-8846-abccc00f3675} components/stylishCommandLine.js
-contract @mozilla.org/commandlinehandler/general-startup;1?type=stylem {9682c01e-071a-45c4-8846-abccc00f3675}
-category profile-after-change myAppHandler @mozilla.org/commandlinehandler/general-startup;1?type=stylem
-category command-line-handler m-stylem @mozilla.org/commandlinehandler/general-startup;1?type=stylem
+component	{9682c01e-071a-45c4-8846-abccc00f3675}	components/stylishCommandLine.js
+contract	@mozilla.org/commandlinehandler/general-startup;1?type=stylem	{9682c01e-071a-45c4-8846-abccc00f3675}
+category	profile-after-change	myAppHandler	@mozilla.org/commandlinehandler/general-startup;1?type=stylem
+category	command-line-handler	m-stylem	@mozilla.org/commandlinehandler/general-startup;1?type=stylem
 
-component {dd9897e8-168b-44c7-960d-63202b78f1a6} components/stylishStartup.js
-contract @stylem/startup;2 {dd9897e8-168b-44c7-960d-63202b78f1a6}
-category profile-after-change stylemStartup @stylem/startup;2
+component	{dd9897e8-168b-44c7-960d-63202b78f1a6}	components/stylishStartup.js
+contract	@stylem/startup;2	{dd9897e8-168b-44c7-960d-63202b78f1a6}
+category	profile-after-change	stylemStartup	@stylem/startup;2
 
-component {20fd33cc-9c23-4489-87a2-d3eb24028e18} components/aboutStylishEdit.js
-contract @mozilla.org/network/protocol/about;1?what=stylem-edit {20fd33cc-9c23-4489-87a2-d3eb24028e18}
+component	{20fd33cc-9c23-4489-87a2-d3eb24028e18}	components/aboutStylishEdit.js
+contract	@mozilla.org/network/protocol/about;1?what=stylem-edit	{20fd33cc-9c23-4489-87a2-d3eb24028e18}
 
 skin	stylem	classic/1.0	skin/
-
 style	chrome://global/content/customizeToolbar.xul	chrome://stylem/skin/overlay.css

@@ -1,6 +1,12 @@
 <!ENTITY entername "Geef deze stijl een naam:">
 <!ENTITY install "Installeren">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Voorbeeld">
-<!ENTITY preview.ak "V">
-<!ENTITY title "Gebruikersstijl installeren">
+
+<!ENTITY cancelInstall "Annuleren">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Tabblad sluiten">
+<!ENTITY closeTab.ak "T">
+<!ENTITY editStyle "Stijl bewerken">
+<!ENTITY editStyle.ak "S">
+<!ENTITY resetDefaults "Herstellen naar standaardwaarden">
+<!ENTITY resetDefaults.ak "H">

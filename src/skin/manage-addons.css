@@ -13,7 +13,6 @@ richlistitem[type="userstyle"] [anonid="date-updated"] {
 richlistitem[type="userstyle"][pending="uninstall"][reportable="true"] .pending {
 	-moz-binding: url("chrome://stylem/content/addon.xbl#addon-uninstalled-buttons");
 }
-/* Remove existing spacer as we add our own */
 richlistitem[type="userstyle"][pending="uninstall"][reportable="true"] button[anonid="undo-btn"] + spacer {
 	display: none;
 }
@@ -40,6 +39,12 @@ richlistitem[type="userstyle"][pending="uninstall"][reportable="true"] button[an
 #list-view[type="userstyle"] #no-styles-note, #list-view[type="userstyle"] #no-styles-write-new {
 	display: -moz-box;
 }
+#no-styles-import {
+	display: none;
+}
+#list-view[type="userstyle"] #no-styles-import {
+	display: -moz-box;
+}
 #userstyle-sorting {
 	display: none;
 }
@@ -52,18 +57,21 @@ richlistitem[type="userstyle"][pending="uninstall"][reportable="true"] button[an
 #list-view[type="userstyle"] #addon-list-empty:not([hidden]) ~ #userstyle-footer {
 	display: none;
 }
-/* Override add-ons manager's "disabled is display: none" */
 #install-from-url, #no-styles-install-from-url {
 	display: -moz-box;
 }
-/* Override Gnome "no images in buttons" */
 #install-from-url:not([image=""]) .button-icon, #no-styles-install-from-url:not([image=""]) .button-icon {
 	display: -moz-box;
 }
 #install-from-url, #no-styles-install-from-url {
 	display: none;
 }
-/* Show buttons only when userstyle category is the active view */
 #list-view[type="userstyle"] :-moz-any(#install-from-url, #no-styles-install-from-url) {
+	display: -moz-box;
+}
+#export-styles, #import-styles {
+	display: none;
+}
+#list-view[type="userstyle"] :-moz-any(#export-styles, #import-styles) {
 	display: -moz-box;
 }

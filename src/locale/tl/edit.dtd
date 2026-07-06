@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "B">
 <!ENTITY xulnamespace "XUL namespace bilang default">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL ng update:">
+
+<!ENTITY usercsssettings "Opsyon">
+<!ENTITY usercssmeta "UserCSS metadata">
+<!ENTITY theme "Tema">
+<!ENTITY themeDefault "Default">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

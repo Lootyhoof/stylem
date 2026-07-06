@@ -1,6 +1,12 @@
 <!ENTITY entername "命名该样式：">
 <!ENTITY install "安装">
 <!ENTITY install.ak "I">
-<!ENTITY preview "预览">
-<!ENTITY preview.ak "P">
-<!ENTITY title "安装用户样式">
+
+<!ENTITY cancelInstall "取消">
+<!ENTITY cancelInstall.ak "取">
+<!ENTITY closeTab "关闭标签页">
+<!ENTITY closeTab.ak "关">
+<!ENTITY editStyle "编辑样式">
+<!ENTITY editStyle.ak "编">
+<!ENTITY resetDefaults "重置为默认值">
+<!ENTITY resetDefaults.ak "重">

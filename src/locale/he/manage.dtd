@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "התקנת מכתובות Url...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "בקר באתר">
-<!ENTITY nostylesend "לקבלת מידע כיצד יש להשתמש ב־ Stylem">
+<!ENTITY nostylesend "- או כתבו סגנון חדש.">
 <!ENTITY sortenabled "פעיל">
+<!ENTITY exportstyles "ייצוא…">
+<!ENTITY importstyles "ייבוא…">
 <!ENTITY sortname "שם">
 <!ENTITY sorttype "סוג">
 <!ENTITY writenew "כתוב סגנון חדש">
 <!ENTITY writenew.ak "כ">
+<!ENTITY supportpage "דף תמיכה">

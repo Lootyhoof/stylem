@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Mag-install mula sa mga URL…">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Bisitahin ang">
-<!ENTITY nostylesend "para sa impormasyon kung paano gamitin ang Stylem.">
+<!ENTITY nostylesend "- o sumulat ng bagong estilo.">
 <!ENTITY sortenabled "Pinapagana">
+<!ENTITY exportstyles "I-export…">
+<!ENTITY importstyles "I-import…">
 <!ENTITY sortname "Pangalan">
 <!ENTITY sorttype "Tipo">
 <!ENTITY writenew "Sumulat ng Bagong Estilo">
 <!ENTITY writenew.ak "U">
+<!ENTITY supportpage "Pahina ng Suporta">

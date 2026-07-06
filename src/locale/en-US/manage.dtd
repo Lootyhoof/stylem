@@ -1,10 +1,11 @@
-<!ENTITY filter "Search">
+<!ENTITY nostylesstart "Find and install UserCSS styles at">
+<!ENTITY nostylesend "- or write a new style.">
+<!ENTITY writenew "Write New Style">
 <!ENTITY installfromurls "Install from URLs…">
-<!ENTITY managetitle "Stylem">
-<!ENTITY nostylesstart "Visit">
-<!ENTITY nostylesend "for information on how to use Stylem.">
-<!ENTITY sortenabled "Enabled">
 <!ENTITY sortname "Name">
 <!ENTITY sorttype "Type">
-<!ENTITY writenew "Write New Style">
-<!ENTITY writenew.ak "W">
+<!ENTITY sortenabled "Status">
+<!ENTITY exportstyles "Export…">
+<!ENTITY importstyles "Import…">
+<!ENTITY manageaddonstitle "User Styles">
+<!ENTITY supportpage "Support Page">

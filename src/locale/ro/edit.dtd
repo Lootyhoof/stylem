@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "Spaţiu de nume XUL ca valoare implicită">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL actualizare:">
+
+<!ENTITY usercsssettings "Opțiuni">
+<!ENTITY usercssmeta "Metadate UserCSS">
+<!ENTITY theme "Temă">
+<!ENTITY themeDefault "Implicit">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

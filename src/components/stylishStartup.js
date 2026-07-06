@@ -5,7 +5,40 @@ try {
 	Components.utils.import("resource://gre/modules/AddonManager.jsm");
 } catch (ex) {}
 var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-var bundle = Components.classes["@mozilla.org/intl/stringbundle;1"].createInstance(Components.interfaces.nsIStringBundleService).createBundle("chrome://stylem/locale/manage.properties");
+
+// Unwrap an XPCOM object to its raw JS object, handling both
+// XPCWrappedNative (.wrappedJSObject) and already-unwrapped cases.
+function stylemUnwrap(obj) {
+	if (!obj) return obj;
+	return obj.wrappedJSObject || obj;
+}
+
+// Lazily import the style module and return the singleton service.
+// The chrome:// URI is only resolvable after profile-after-change fires,
+// so we cannot import it at component-parse time.
+var _styleServiceCache = null;
+function getStyleService() {
+	if (!_styleServiceCache) {
+		try {
+			Components.utils.import("chrome://stylem/content/modules/stylishStyleModule.jsm");
+			_styleServiceCache = styleService; // exported by the jsm
+		} catch(e) {
+			Components.utils.reportError("Stylem: could not import style service: " + e);
+		}
+	}
+	return _styleServiceCache;
+}
+
+// Lazy bundle getter - defers chrome: URI resolution until after profile is ready
+var _bundle = null;
+function getBundle() {
+	if (!_bundle) {
+		_bundle = Components.classes["@mozilla.org/intl/stringbundle;1"]
+			.getService(Components.interfaces.nsIStringBundleService)
+			.createBundle("chrome://stylem/locale/manage.properties");
+	}
+	return _bundle;
+}
 
 function StylishStartup() {}
 
@@ -17,23 +50,46 @@ StylishStartup.prototype = {
 	QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsISupports, Components.interfaces.nsIObserver]),
 
 	observe: function(aSubject, aTopic, aData) {
-		var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
-		service.findEnabled(true, service.REGISTER_STYLE_ON_LOAD, {});
-		if (typeof AddonManagerPrivate != "undefined") {
-			AddonManagerPrivate.registerProvider(UserStyleManager, [{
-				id: "userstyle",
-				name: bundle.GetStringFromName("manageaddonstitle"),
-				uiPriority: 4600,
-				viewType: AddonManager.VIEW_TYPE_LIST
-			}]);
+		// Load enabled styles - wrapped separately so a failure here doesn't
+		// block provider registration or messaging setup
+		try {
+			var service = getStyleService();
+			service.findEnabled(true, service.REGISTER_STYLE_ON_LOAD, {});
+		} catch(e) {
+			Components.utils.reportError("Stylem: could not load enabled styles: " + e);
 		}
-		wireUpMessaging();
+		// Register the User Styles category in about:addons
+		if (typeof AddonManagerPrivate != "undefined") {
+			try {
+				// Create bundle here - chrome: URIs are safe to resolve after profile-after-change
+				var localBundle = Components.classes["@mozilla.org/intl/stringbundle;1"]
+					.getService(Components.interfaces.nsIStringBundleService)
+					.createBundle("chrome://stylem/locale/manage.properties");
+				var categoryName = localBundle.GetStringFromName("manageaddonstitle");
+				AddonManagerPrivate.registerProvider(UserStyleManager, [{
+					id: "userstyle",
+					name: categoryName,
+					uiPriority: 4600,
+					// Use the literal string "list" - extensions.js maps viewObjects["list"]
+					// to gListView. AddonManager.VIEW_TYPE_LIST may be undefined in some
+					// versions of Pale Moon's AddonManager.jsm.
+					viewType: "list"
+				}]);
+			} catch(e) {
+				Components.utils.reportError("Stylem: could not register addon provider: " + e);
+			}
+		}
+		try {
+			wireUpMessaging();
+		} catch(e) {
+			Components.utils.reportError("Stylem: wireUpMessaging failed: " + e);
+		}
 	}
 }
 
 var turnOnOffObserver = {
 	observe: function(subject, topic, data) {
-		var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
+		var service = getStyleService();
 		service.findEnabled(true, subject.QueryInterface(Components.interfaces.nsIPrefBranch).getBoolPref(data) ? service.REGISTER_STYLE_ON_LOAD : service.UNREGISTER_STYLE_ON_LOAD, {});
 	}
 }
@@ -47,19 +103,38 @@ var UserStyleManager = {
 			aCallback([]);
 			return;
 		}
-		var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
-		var styles = service.list(service.REGISTER_STYLE_ON_CHANGE, {});
-		aCallback(styles.map(getUserStyleWrapper));
+		try {
+			var service = getStyleService();
+			var countObj = {};
+			var styles = service.list(0, countObj);
+			var wrappers = [];
+			for (var i = 0; i < styles.length; i++) {
+				try {
+					wrappers.push(getUserStyleWrapper(styles[i]));
+				} catch(e) {
+					Components.utils.reportError("Stylem: failed to wrap style id=" + (styles[i] && styles[i].id) + ": " + e);
+				}
+			}
+			aCallback(wrappers);
+		} catch(e) {
+			Components.utils.reportError("Stylem: getAddonsByTypes failed: " + e);
+			aCallback([]);
+		}
 	},
 
 	getAddonByID: function(id, callback) {
-		var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
-		var style = service.find(id, service.REGISTER_STYLE_ON_CHANGE);
-		if (style == null) {
+		try {
+			var service = getStyleService();
+			var style = service.find(id, 0);
+			if (style == null) {
+				callback(null);
+				return;
+			}
+			callback(getUserStyleWrapper(style));
+		} catch(e) {
+			Components.utils.reportError("Stylem: getAddonByID failed: " + e);
 			callback(null);
-			return;
 		}
-		callback(getUserStyleWrapper(style));
 	},
 
 	getInstallForURL: function(url, callback, mimetype, hash, name, iconURL, version, loadGroup) {
@@ -129,11 +204,36 @@ function getUserStyleWrapper(s) {
 		pendingOperations: AddonManager.PENDING_NONE,
 		isCompatible: true,
 		isPlatformCompatible: true,
-		iconURL: "chrome://stylem/skin/32.svg",
+		get iconURL() {
+			return "chrome://stylem/skin/32.svg";
+		},
 		scope: AddonManager.SCOPE_PROFILE,
-		blocklistState: Components.interfaces.nsIBlocklistService.STATE_NOT_BLOCKED,
-		version: "",
+		blocklistState: (Components.interfaces.nsIBlocklistService && "STATE_NOT_BLOCKED" in Components.interfaces.nsIBlocklistService)
+			? Components.interfaces.nsIBlocklistService.STATE_NOT_BLOCKED
+			: 0,
+		get version() {
+			var ucss = this._getUserCSSMeta();
+			return ucss.version || "";
+		},
 		operationsRequiringRestart: AddonManager.OP_NEEDS_RESTART_NONE,
+
+		get creator() {
+			var ucss = this._getUserCSSMeta();
+			if (!ucss.author) return null;
+			return {name: ucss.author, toString: function() { return this.name; }};
+		},
+
+		_usercssMeta: null,
+		_getUserCSSMeta: function() {
+			if (this._usercssMeta) return this._usercssMeta;
+			try {
+				var code = this.style.code;
+				if (code && code.indexOf("==UserStyle==") !== -1) {
+					this._usercssMeta = this.style.parseUserCSSMetadata(code);
+				}
+			} catch(e) {}
+			return this._usercssMeta || {};
+		},
 
 		get id() {
 			return this.style.id.toString();
@@ -144,7 +244,13 @@ function getUserStyleWrapper(s) {
 		},
 
 		get homepageURL() {
-			return this.style.url;
+			var ucss = this._getUserCSSMeta();
+			return ucss.homepageURL || this.style.url;
+		},
+
+		get supportURL() {
+			var ucss = this._getUserCSSMeta();
+			return ucss.supportURL || null;
 		},
 
 		get size() {
@@ -188,6 +294,8 @@ function getUserStyleWrapper(s) {
 		},
 
 		get description() {
+			var ucss = this._getUserCSSMeta();
+			if (ucss.description) return ucss.description;
 			return this.getAppliesString();
 		},
 
@@ -195,15 +303,15 @@ function getUserStyleWrapper(s) {
 			var types = this.style.getTypes({});
 			if (types.length == 1) {
 				if (types[0] == "global") {
-					return bundle.GetStringFromName("globalstyledescription");
+					return getBundle().GetStringFromName("globalstyledescription");
 				}
 				if (types[0] == "app") {
-					return bundle.GetStringFromName("appstyledescription");
+					return getBundle().GetStringFromName("appstyledescription");
 				}
 			}
 			var affects = this.style.getPrettyAppliesTo({});
 			if (affects.length > 0) {
-				return bundle.formatStringFromName("sitestyledescription", [affects.join(", ")], 1);
+				return getBundle().formatStringFromName("sitestyledescription", [affects.join(", ")], 1);
 			}
 			return "";
 		},
@@ -234,10 +342,22 @@ function getUserStyleWrapper(s) {
 			if (this.style.id == subject.id) {
 				this.style = subject;
 			}
+		},
+
+		QueryInterface: function(iid) {
+			if (iid.equals(Components.interfaces.nsISupports) ||
+			    iid.equals(Components.interfaces.nsIObserver)) {
+				return this;
+			}
+			throw Components.results.NS_ERROR_NO_INTERFACE;
 		}
 	};
 	var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-	observerService.addObserver(w, "stylem-style-change", false);
+	try {
+		observerService.addObserver(w, "stylem-style-change", false);
+	} catch(e) {
+		Components.utils.reportError("Stylem: addObserver on style wrapper failed: " + e);
+	}
 	return w;
 }
 
@@ -288,7 +408,7 @@ function getUserStyleUpdateInstallItem(addonItem) {
 					l.onInstallStarted(this, this.addon);
 				}
 			}, this);
-			var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
+			var service = getStyleService();
 			var that = this;
 
 			// Results for "apply updates"
@@ -339,7 +459,19 @@ var pendingUpdates = [];
 
 var addonsObserver = {
 	observe: function(subject, topic, data) {
-		var itemWrapper = getUserStyleWrapper(subject);
+		// subject arrives as nsISupports from the observer service.
+		// Unwrap to the raw Style JS object.
+		var style = subject.wrappedJSObject || subject;
+		// If unwrapping didn't give us a Style (e.g. id is missing),
+		// try to locate it by id from the data string.
+		if (!style || style.id === undefined) {
+			var svc = getStyleService();
+			if (svc && data) {
+				style = svc.find(parseInt(data), 0) || style;
+			}
+		}
+		if (!style || style.id === undefined) return;
+		var itemWrapper = getUserStyleWrapper(style);
 		switch (topic) {
 			case "stylem-style-add":
 				var install = {
@@ -361,16 +493,24 @@ var addonsObserver = {
 		}
 	}
 }
-var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-observerService.addObserver(addonsObserver, "stylem-style-add", false);
-observerService.addObserver(addonsObserver, "stylem-style-change", false);
-observerService.addObserver(addonsObserver, "stylem-style-delete", false);
+try {
+	var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+	observerService.addObserver(addonsObserver, "stylem-style-add", false);
+	observerService.addObserver(addonsObserver, "stylem-style-change", false);
+	observerService.addObserver(addonsObserver, "stylem-style-delete", false);
+} catch(e) {
+	Components.utils.reportError("Stylem: could not register style observers: " + e);
+}
 
-Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).addObserver("extensions.stylem.styleRegistrationEnabled", turnOnOffObserver, false);
+try {
+	Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).addObserver("extensions.stylem.styleRegistrationEnabled", turnOnOffObserver, false);
+} catch(e) {
+	Components.utils.reportError("Stylem: could not register pref observer: " + e);
+}
 
 function wireUpMessaging() {
 	Components.utils.import("chrome://stylem/content/common.js");
-	var service = Components.classes["@stylem.ext/style;1"].getService(Components.interfaces.stylishStyle);
+	var service = getStyleService();
 	var STRINGS = Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://stylem/locale/overlay.properties");
 
 	var globalMM = Components.classes["@mozilla.org/globalmessagemanager;1"].getService(Components.interfaces.nsIMessageListenerManager);
@@ -384,53 +524,9 @@ function wireUpMessaging() {
 		return message.target.ownerDocument.defaultView;
 	}
 
-	globalMM.addMessageListener("stylish:get-style-install-status", function(message) {
-		var style = service.findByUrl(message.data.idUrl, 0);
-		if (style) {
-			if (style.originalMd5 == message.data.md5) {
-				reply(message, "stylish:style-already-installed");
-			} else {
-				reply(message, "stylish:style-can-be-updated");
-			}
-		} else {
-			reply(message, "stylish:style-can-be-installed");
-		}
-	});
-
-	globalMM.addMessageListener("stylish:install-style", function(message) {
-		stylishCommon.installFromStyleInfo(message.data, function(result) {
-			if (result == "installed") {
-				reply(message, "stylish:style-installed");
-			}
-		}, messageToWindow(message));
-	});
-
-	globalMM.addMessageListener("stylish:update-style", function(message) {
-		var style = service.findByUrl(message.data.idUrl, service.REGISTER_STYLE_ON_CHANGE + service.CALCULATE_META);
-		var code = message.data.code;
-		var md5 = message.data.md5;
-		var md5Url = message.data.md5Url;
-		var updateUrl = message.data.updateUrl;
-		if (!style || !code) {
-			return;
-		}
-		var prompt = STRINGS.formatStringFromName("updatestyle", [style.name], 1);
-		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
-		if (prompts.confirmEx(messageToWindow(message), STRINGS.formatStringFromName("updatestyletitle", [], 0), prompt, prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING + prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL, STRINGS.formatStringFromName("updatestyleok", [], 0), null, null, null, {}) == 0) {
-			style.code = code;
-
-			//we're now in sync with the remote style, so let's set things appropriately
-			style.originalCode = code;
-			style.md5Url = md5Url;
-			style.originalMd5 = md5;
-			style.updateUrl = updateUrl;
-
-			style.save();
-			reply(message, "stylish:style-updated");
-		}
-	});
-
 }
+
+if (XPCOMUtils.generateNSGetFactory)
 
 if (XPCOMUtils.generateNSGetFactory)
     var NSGetFactory = XPCOMUtils.generateNSGetFactory([StylishStartup]);

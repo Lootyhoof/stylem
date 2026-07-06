@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Εγκατάσταση από διευθύνσεις URL…">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Επίσκεψη">
-<!ENTITY nostylesend "για πληροφορίες σχετικά με το πώς να χρησιμοποιήσετε το Stylem.">
+<!ENTITY nostylesend "- ή γράψτε ένα νέο στυλ.">
 <!ENTITY sortenabled "Ενεργοποιήθηκε">
+<!ENTITY exportstyles "Εξαγωγή…">
+<!ENTITY importstyles "Εισαγωγή…">
 <!ENTITY sortname "Ονομα">
 <!ENTITY sorttype "Τύπος">
 <!ENTITY writenew "Εγγραφη νεου στυλ">
 <!ENTITY writenew.ak "Β">
+<!ENTITY supportpage "Σελίδα υποστήριξης">

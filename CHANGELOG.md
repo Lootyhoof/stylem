@@ -1,5 +1,13 @@
 # Changelog
 
+### 3.0.0
+- support UserCSS format and prefer it over the legacy format
+- detect when UserCSS is opened and prompt to install it
+- support UserCSS Vars in the editor
+- replace the editor's use of DevTools with a bundled version of CodeMirror with its own themes
+- add import/export of styles in a format compatible with Stylus
+- replace all instances of userstyles.org with userstyles.world
+
 ### 2.2.9
 - safety fix to avoid console warnings (thanks dirkf)
 - additional compatibility fixes for Mozilla platform (up to 57) (thanks dirkf)

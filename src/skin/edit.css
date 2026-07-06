@@ -35,12 +35,139 @@
 .devtools-toolbarbutton[disabled="true"] {
 	opacity: 0.2;
 }
-.update-url-row {
-	display: none;
-}
+
 grid {
 	margin: 2px 0;
 }
 #editor-tools {
 	padding: 5px 0;
+}
+
+#theme-selector {
+	margin: 0 4px;
+}
+
+#main-area {
+	overflow: auto;
+	max-height: 100vh;
+}
+
+#editor-split {
+	overflow: hidden;
+}
+
+#meta-pane {
+	min-width: 100px;
+	width: 300px;
+	overflow: auto;
+	padding: 4px 6px;
+}
+
+#meta-splitter {
+	min-width: 4px;
+	cursor: ew-resize;
+}
+
+#cm-frame-box {
+	flex: 1;
+	overflow: hidden;
+}
+
+#cm-frame {
+	background-color: white;
+}
+
+#cm-fallback {
+	font-family: monospace;
+}
+
+.editor-status-label {
+	font-size: smaller;
+	font-style: italic;
+	color: #c97a00;
+	margin-right: 4px;
+}
+
+.applies-summary {
+	overflow: hidden;
+}
+
+.applies-rules {
+	min-height: 100px;
+}
+
+.applies-to-text {
+	font-style: italic;
+	max-width: 100%;
+}
+
+#usercss-vars-section {
+	margin-top: 4px;
+}
+
+#vars-actions {
+	padding: 4px 0 0 0;
+	border-top: 1px solid ThreeDShadow;
+}
+
+.preprocessor-warning,
+.preprocessor-notification {
+	color: #c97a00;
+	font-style: italic;
+	font-size: smaller;
+}
+
+.preprocessor-notification {
+	padding: 4px 8px;
+	border-bottom: 1px solid ThreeDShadow;
+	min-width: 0;
+	overflow-wrap: break-word;
+}
+
+.var-row {
+	padding: 3px 2px;
+	border-bottom: 1px solid ThreeDShadow;
+}
+
+.var-row:last-child {
+	border-bottom: none;
+}
+
+.var-label {
+	font-weight: bold;
+	min-width: 10em;
+	margin-right: 8px;
+}
+
+.var-colorpicker {
+	margin-right: 4px;
+}
+
+.var-color-text {
+	width: 7em;
+	font-family: monospace;
+}
+
+.var-unit {
+	margin-left: 4px;
+	color: GrayText;
+}
+
+.var-range-value {
+	min-width: 4em;
+	text-align: right;
+	font-family: monospace;
+	color: GrayText;
+}
+
+.var-menulist {
+	min-width: 12em;
+}
+
+.meta-key {
+	font-weight: bold;
+	color: GrayText;
+	min-width: 8em;
+	text-align: right;
+	margin-right: 6px;
 }

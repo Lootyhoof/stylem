@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "Nainstalovat z URL adresy...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "Navštivte">
-<!ENTITY nostylesend "pro informace jak používat Stylem.">
+<!ENTITY nostylesend "- nebo napište nový styl.">
 <!ENTITY sortenabled "Povoleno">
+<!ENTITY exportstyles "Exportovat…">
+<!ENTITY importstyles "Importovat…">
 <!ENTITY sortname "Název">
 <!ENTITY sorttype "Typ">
 <!ENTITY writenew "Napsat nový styl">
 <!ENTITY writenew.ak "N">
+<!ENTITY supportpage "Stránka podpory">

@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "주소에서 설치">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "스타일리시 사용법을 알고 싶으면">
-<!ENTITY nostylesend "로 방문해 주십시오.">
+<!ENTITY nostylesend "- 또는 새 스타일을 작성하세요.">
 <!ENTITY sortenabled "사용 여부">
+<!ENTITY exportstyles "내보내기…">
+<!ENTITY importstyles "가져오기…">
 <!ENTITY sortname "이름">
 <!ENTITY sorttype "종류">
 <!ENTITY writenew "새 스타일 작성">
 <!ENTITY writenew.ak "W">
+<!ENTITY supportpage "지원 페이지">

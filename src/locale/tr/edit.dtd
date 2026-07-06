@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "XUL ad alanı varsayılan">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "Güncelleme URL'si:">
+
+<!ENTITY usercsssettings "Seçenekler">
+<!ENTITY usercssmeta "UserCSS meta verileri">
+<!ENTITY theme "Tema">
+<!ENTITY themeDefault "Varsayılan">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

@@ -1,6 +1,12 @@
 <!ENTITY entername "Δώστε σε αυτό το στυλ ένα όνομα.">
 <!ENTITY install "Εγκατάσταση">
 <!ENTITY install.ak "Ι">
-<!ENTITY preview "Προεπισκόπηση">
-<!ENTITY preview.ak "Ρ">
-<!ENTITY title "Εγκατάσταση στυλ χρήστη">
+
+<!ENTITY cancelInstall "Ακύρωση">
+<!ENTITY cancelInstall.ak "Α">
+<!ENTITY closeTab "Κλείσιμο καρτέλας">
+<!ENTITY closeTab.ak "Κ">
+<!ENTITY editStyle "Επεξεργασία στυλ">
+<!ENTITY editStyle.ak "Ε">
+<!ENTITY resetDefaults "Επαναφορά προεπιλογών">
+<!ENTITY resetDefaults.ak "Ε">

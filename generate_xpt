@@ -1,2 +1,0 @@
-~/xulrunner-sdk/sdk/bin/typelib.py --cachedir ~/xpidlcache -I ~/xulrunner-sdk/idl -o ./components/stylishStyle.xpt ./idl/stylishStyle.idl
-~/xulrunner-sdk/sdk/bin/typelib.py --cachedir ~/xpidlcache -I ~/xulrunner-sdk/idl -o ./components/stylishDataSource.xpt ./idl/stylishDataSource.idl

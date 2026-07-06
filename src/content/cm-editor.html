@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="codemirror/codemirror.css">
+<link rel="stylesheet" href="codemirror/addon/search/dialog.css">
+<link rel="stylesheet" href="codemirror/addon/hint/show-hint.css">
+<style>
+	* { box-sizing: border-box; }
+	html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+	.CodeMirror {
+		height: 100%;
+		font-family: monospace;
+		font-size: 12px;
+		line-height: 1.5;
+	}
+	/* Ensure the CodeMirror wrapper itself fills the body */
+	.CodeMirror-scroll { min-height: 100%; }
+	.cm-error-line { background-color: rgba(255, 0, 0, 0.12); }
+</style>
+</head>
+<body>
+<textarea id="host"></textarea>
+
+<script src="codemirror/codemirror.js"></script>
+<script src="codemirror/mode/css/css.js"></script>
+<script src="codemirror/addon/edit/matchbrackets.js"></script>
+<script src="codemirror/addon/edit/closebrackets.js"></script>
+<script src="codemirror/addon/selection/active-line.js"></script>
+<script src="codemirror/addon/search/searchcursor.js"></script>
+<script src="codemirror/addon/search/dialog.js"></script>
+<script src="codemirror/addon/search/search.js"></script>
+<script src="codemirror/addon/search/jump-to-line.js"></script>
+<script src="codemirror/addon/hint/show-hint.js"></script>
+<script src="codemirror/addon/hint/css-hint.js"></script>
+
+<script>
+"use strict";
+
+// Exposed to the parent XUL document via contentWindow.stylemEditor
+var stylemEditor = {
+	cm: null,
+	onChangeCallback: null,
+	readOnly: false,
+
+	init: function(initialValue, wrapLines, themeName) {
+		this.readOnly = location.search.indexOf("readonly") !== -1;
+		var host = document.getElementById("host");
+		host.value = initialValue || "";
+		var theme = themeName || "default";
+		var opts = {
+			value: initialValue || "",
+			mode: "css",
+			theme: theme,
+			lineNumbers: true,
+			lineWrapping: !!wrapLines,
+			indentUnit: 4,
+			tabSize: 4,
+			indentWithTabs: false
+		};
+		if (theme !== "default") this._loadTheme(theme);
+		if (this.readOnly) {
+			opts.readOnly = true;
+			opts.cursorBlinkRate = -1;
+		} else {
+			opts.matchBrackets = true;
+			opts.autoCloseBrackets = true;
+			opts.styleActiveLine = true;
+			opts.extraKeys = {
+				"Ctrl-Space": "autocomplete",
+				"Ctrl-S": function() {
+					if (stylemEditor.onSaveRequested) stylemEditor.onSaveRequested();
+				},
+				"Ctrl-F": "findPersistent",
+				"Cmd-F": "findPersistent"
+			};
+		}
+		this.cm = CodeMirror.fromTextArea(host, opts);
+		if (!this.readOnly) {
+			this.cm.on("change", function() {
+				if (stylemEditor.onChangeCallback) stylemEditor.onChangeCallback();
+			});
+			this.cm.on("inputRead", function(cm, change) {
+				if (change.text && change.text.length > 0 &&
+				    /[a-zA-Z-]/.test(change.text[0]) &&
+				    !cm.state.completionActive) {
+					cm.showHint({completeSingle: false});
+				}
+			});
+		}
+		return this.cm;
+	},
+
+	getValue: function() {
+		return this.cm ? this.cm.getValue() : "";
+	},
+
+	setValue: function(value) {
+		if (this.cm) this.cm.setValue(value || "");
+	},
+
+	focus: function() {
+		if (this.cm) this.cm.focus();
+	},
+
+	setWordWrap: function(on) {
+		if (this.cm) this.cm.setOption("lineWrapping", !!on);
+	},
+
+	setTheme: function(name) {
+		if (!this.cm) return;
+		if (name === "default") {
+			this.cm.setOption("theme", "default");
+			return;
+		}
+		this._loadTheme(name);
+		this.cm.setOption("theme", name);
+	},
+
+	_loadTheme: function(name) {
+		var linkId = "cm-theme-" + name;
+		if (document.getElementById(linkId)) return;
+		var link = document.createElement("link");
+		link.id = linkId;
+		link.rel = "stylesheet";
+		link.type = "text/css";
+		link.href = "codemirror/theme/" + name + ".css";
+		document.head.appendChild(link);
+	},
+
+	getCursor: function() {
+		return this.cm ? this.cm.getCursor() : {line: 0, ch: 0};
+	},
+
+	setCursor: function(line, ch) {
+		if (!this.cm) return;
+		this.cm.setCursor({line: line, ch: ch});
+		this.cm.focus();
+		this.cm.scrollIntoView({line: line, ch: ch}, 100);
+	},
+
+	gotoLineCol: function(line, col) {
+		// CodeMirror lines are 0-indexed; Stylem's CSS error reporting is 1-indexed
+		this.setCursor(Math.max(0, line - 1), Math.max(0, col));
+	},
+
+	insertAtCursor: function(text) {
+		if (!this.cm) return;
+		var doc = this.cm.getDoc();
+		var cursor = doc.getCursor();
+		doc.replaceRange(text, cursor);
+		this.cm.focus();
+	},
+
+	insertAtStart: function(text) {
+		if (!this.cm) return;
+		var doc = this.cm.getDoc();
+		if (doc.getValue().indexOf(text) === -1) {
+			doc.replaceRange(text + "\n", {line: 0, ch: 0});
+		}
+		this.cm.focus();
+	},
+
+	getSelectionRange: function() {
+		if (!this.cm) return {start: 0, end: 0};
+		var doc = this.cm.getDoc();
+		return {
+			start: doc.indexFromPos(doc.getCursor("from")),
+			end: doc.indexFromPos(doc.getCursor("to"))
+		};
+	},
+
+	setSelectionRange: function(start, end) {
+		if (!this.cm) return;
+		var doc = this.cm.getDoc();
+		doc.setSelection(doc.posFromIndex(start), doc.posFromIndex(end));
+		this.cm.focus();
+	},
+
+	// Highlight a line as having a CSS error (called from the parent)
+	markErrorLine: function(line) {
+		if (!this.cm) return;
+		this.cm.addLineClass(Math.max(0, line - 1), "background", "cm-error-line");
+	},
+
+	clearErrorMarks: function() {
+		if (!this.cm) return;
+		var lineCount = this.cm.lineCount();
+		for (var i = 0; i < lineCount; i++) {
+			this.cm.removeLineClass(i, "background", "cm-error-line");
+		}
+	},
+
+	refresh: function() {
+		if (this.cm) this.cm.refresh();
+	}
+};
+
+window.stylemEditor = stylemEditor;
+
+// Auto-init in read-only mode (used by install tab)
+if (location.search.indexOf("readonly") !== -1) {
+	stylemEditor.readOnly = true;
+	stylemEditor.init("");
+}
+</script>
+</body>
+</html>

@@ -20,3 +20,13 @@
 <!ENTITY wraplines.ak "B">
 <!ENTITY xulnamespace "Không gian tên XML làm mặc định">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "URL cập nhật:">
+
+<!ENTITY usercsssettings "Tùy chọn">
+<!ENTITY usercssmeta "Siêu dữ liệu UserCSS">
+<!ENTITY theme "Giao diện">
+<!ENTITY themeDefault "Mặc định">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

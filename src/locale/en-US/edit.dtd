@@ -20,3 +20,16 @@
 <!ENTITY wraplines.ak "W">
 <!ENTITY xulnamespace "XUL namespace as default">
 <!ENTITY xulnamespace.ak "X">
+<!ENTITY updateurl "Update URL:">
+<!ENTITY appliesto "Applies To">
+<!ENTITY editappliesto "Edit…">
+<!ENTITY appliestodesc "Specify which pages this style applies to using @-moz-document rules:">
+<!ENTITY addappliesrule "Add Rule">
+<!ENTITY usercssmeta "UserCSS Metadata">
+<!ENTITY usercsssettings "Options">
+<!ENTITY theme "Theme">
+<!ENTITY themeDefault "Default">
+<!ENTITY themeEclipse "Eclipse">
+<!ENTITY themeMonokai "Monokai">
+<!ENTITY themeMaterial "Material">
+<!ENTITY themeDracula "Dracula">

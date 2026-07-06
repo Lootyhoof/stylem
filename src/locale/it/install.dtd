@@ -1,6 +1,12 @@
 <!ENTITY entername "Nome dello stile:">
 <!ENTITY install "Aggiungi">
 <!ENTITY install.ak "A">
-<!ENTITY preview "Visualizza anteprima">
-<!ENTITY preview.ak "V">
-<!ENTITY title "Nuovo stile">
+
+<!ENTITY cancelInstall "Annulla">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Chiudi scheda">
+<!ENTITY closeTab.ak "C">
+<!ENTITY editStyle "Modifica stile">
+<!ENTITY editStyle.ak "M">
+<!ENTITY resetDefaults "Ripristina predefiniti">
+<!ENTITY resetDefaults.ak "R">

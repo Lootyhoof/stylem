@@ -2,9 +2,12 @@
 <!ENTITY installfromurls "從 URL 安裝...">
 <!ENTITY managetitle "Stylem">
 <!ENTITY nostylesstart "瀏覽">
-<!ENTITY nostylesend "關於如何使用 Stylem。">
+<!ENTITY nostylesend "- 或編寫新樣式。">
 <!ENTITY sortenabled "啟用">
+<!ENTITY exportstyles "匯出…">
+<!ENTITY importstyles "匯入…">
 <!ENTITY sortname "名稱">
 <!ENTITY sorttype "類型">
 <!ENTITY writenew "編寫新樣式">
 <!ENTITY writenew.ak "W">
+<!ENTITY supportpage "支援頁面">

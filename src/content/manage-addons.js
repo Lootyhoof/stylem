@@ -1,5 +1,7 @@
 "use strict";
 
+Components.utils.import("resource://gre/modules/Services.jsm");
+
 var stylemManageAddons = {
 
 	getSortButtons: function() {
@@ -52,16 +54,49 @@ var stylemManageAddons = {
 		// get the chrome window so we can open in tab if necessary
 		var win = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher).activeWindow;
 		stylishCommon.addCode('', win);
+	},
+
+	openSupportPage: function() {
+		var item = document.getElementById('addon-list').selectedItem;
+		if (item && item.mAddon && item.mAddon.supportURL) {
+			var win = Services.wm.getMostRecentWindow("navigator:browser");
+			if (win) {
+				win.openUILinkIn(item.mAddon.supportURL, "tab");
+			}
+		}
 	}
 }
 
 // add some more properties so we can sort on them
 stylemManageAddons._createItem = createItem,
+
+(function() {
+	var popup = document.getElementById('addonitem-popup');
+	if (!popup) return;
+	var supportItem = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "menuitem");
+	supportItem.setAttribute("id", "menuitem_userstyle_support");
+	supportItem.setAttribute("label", "Support Page");
+	supportItem.addEventListener("command", function() { stylemManageAddons.openSupportPage(); });
+	var editItem = document.getElementById('menuitem_userstyle_edit');
+	if (editItem) {
+		popup.insertBefore(supportItem, editItem);
+	} else {
+		popup.appendChild(supportItem);
+	}
+	popup.addEventListener('popupshowing', function() {
+		var item = document.getElementById('addon-list').selectedItem;
+		if (item && item.mAddon && item.mAddon.supportURL) {
+			supportItem.removeAttribute('disabled');
+		} else {
+			supportItem.setAttribute('disabled', 'true');
+		}
+	});
+})();
 createItem = function(o, aIsInstall, aIsRemote) {
 	var item = stylemManageAddons._createItem(o, aIsInstall, aIsRemote);
 	if ("mAddon" in item && item.mAddon.type == "userstyle") {
 		item.setAttribute("styleTypes", item.mAddon.styleTypes);
-		item.setAttribute("reportable", item.mAddon.style.idUrl == null ? false : (item.mAddon.style.idUrl.indexOf("http://userstyles.org/") == 0));
+		item.setAttribute("reportable", item.mAddon.style.idUrl == null ? false : (item.mAddon.style.idUrl.indexOf("https://userstyles.world/") == 0 || item.mAddon.style.idUrl.indexOf("http://userstyles.org/") == 0 || item.mAddon.style.idUrl.indexOf("https://userstyles.org/") == 0));
 	}
 	return item;
 }

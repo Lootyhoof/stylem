@@ -1,6 +1,12 @@
 <!ENTITY entername "Đặt tên cho style này:">
 <!ENTITY install "Cài đặt">
 <!ENTITY install.ak "C">
-<!ENTITY preview "Xem thử">
-<!ENTITY preview.ak "X">
-<!ENTITY title "Cài đặt style người dùng">
+
+<!ENTITY cancelInstall "Hủy">
+<!ENTITY cancelInstall.ak "H">
+<!ENTITY closeTab "Đóng thẻ">
+<!ENTITY closeTab.ak "Đ">
+<!ENTITY editStyle "Chỉnh sửa kiểu">
+<!ENTITY editStyle.ak "C">
+<!ENTITY resetDefaults "Đặt lại về mặc định">
+<!ENTITY resetDefaults.ak "Đ">

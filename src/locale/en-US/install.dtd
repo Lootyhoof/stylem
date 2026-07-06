@@ -1,6 +1,12 @@
 <!ENTITY entername "Give this style a name:">
 <!ENTITY install "Install">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Preview">
-<!ENTITY preview.ak "P">
-<!ENTITY title "Install user style">
+
+<!ENTITY cancelInstall "Cancel">
+<!ENTITY cancelInstall.ak "C">
+<!ENTITY closeTab "Close Tab">
+<!ENTITY closeTab.ak "C">
+<!ENTITY editStyle "Edit Style">
+<!ENTITY editStyle.ak "E">
+<!ENTITY resetDefaults "Reset to defaults">
+<!ENTITY resetDefaults.ak "R">

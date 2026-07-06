@@ -1,6 +1,12 @@
 <!ENTITY entername "Donner un nom à ce style :">
 <!ENTITY install "Installer">
 <!ENTITY install.ak "I">
-<!ENTITY preview "Aperçu">
-<!ENTITY preview.ak "p">
-<!ENTITY title "Installer le style de l\'utilisateur">
+
+<!ENTITY cancelInstall "Annuler">
+<!ENTITY cancelInstall.ak "A">
+<!ENTITY closeTab "Fermer l'onglet">
+<!ENTITY closeTab.ak "F">
+<!ENTITY editStyle "Modifier le style">
+<!ENTITY editStyle.ak "M">
+<!ENTITY resetDefaults "Réinitialiser les valeurs par défaut">
+<!ENTITY resetDefaults.ak "R">
