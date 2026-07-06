@@ -950,7 +950,7 @@ function renderInlineVars() {
 		advBody.appendChild(advRows);
 		advGroup.appendChild(advBody);
 		advCheckbox.addEventListener("command", function() {
-			advRows.hidden = !this.checked;
+			advBody.hidden = !this.checked;
 		}, false);
 		advancedVars.forEach(function(v) {
 			var realIdx = parsed.vars.indexOf(v);
