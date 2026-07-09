@@ -153,6 +153,9 @@ var stylishCommon = {
 	},
 
 	// --- Install flow ---
+	_isHttpUrl: function(url) {
+		return /^https?:\/\//i.test(url);
+	},
 	startInstallFromUrls: function(startedCallback, endedCallback) {
 		const STRINGS = Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://stylem/locale/manage.properties");
 		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
@@ -185,6 +188,11 @@ var stylishCommon = {
 	},
 
 	installFromUrl: function(url, callback) {
+		if (!stylishCommon._isHttpUrl(url)) {
+			Components.utils.reportError("Stylem install from URL '" + url + "' failed - only http and https URLs are allowed.");
+			callback("failure");
+			return;
+		}
 		stylishCommon.installFromUrlHtml(url, function(result) {
 			if (result == "css") {
 				stylishCommon.installFromUrlCss(url, callback);
@@ -195,7 +203,6 @@ var stylishCommon = {
 	},
 
 	installFromUrlHtml: function(url, callback) {
-		if (/^file:.*/i.test(url)) { callback("css"); return; }
 		var xhr = new XMLHttpRequest();
 		xhr.onload = function() {
 			if (this.status != 200) {
