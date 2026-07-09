@@ -104,6 +104,16 @@ var stylishCommon = {
 			win.gBrowser.loadOneTab(url, {inBackground: false, relatedToCurrent: true});
 			return;
 		}
+		// Mail client tabbed interface (Epyrus/Thunderbird)
+		if (typeof win.gBrowser == "undefined") {
+			var tabmail = win.document.getElementById("tabmail");
+			if (tabmail && typeof tabmail.openTab == "function") {
+				try {
+					tabmail.openTab("chromeTab", {chromePage: url});
+					return;
+				} catch(e) {}
+			}
+		}
 		params.windowType = name;
 		return win.openDialog(url, name, "chrome,resizable,dialog=no");
 	},
@@ -266,15 +276,28 @@ var stylishCommon = {
 		// Pass data to the chrome tab page via the browser window global
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 		var browserWin = wm.getMostRecentWindow("navigator:browser");
-		if (!browserWin) {
-			if (callback) callback("error");
+		if (browserWin) {
+			browserWin.stylemPendingInstallCSS = css;
+			browserWin.stylemPendingInstallSourceUrl = sourceUrl || null;
+			browserWin.stylemPendingInstallAlreadyInstalled = alreadyInstalled;
+			browserWin.gBrowser.loadURI("chrome://stylem/content/install.xul");
 			return;
 		}
-		browserWin.stylemPendingInstallCSS = css;
-		browserWin.stylemPendingInstallSourceUrl = sourceUrl || null;
-		browserWin.stylemPendingInstallAlreadyInstalled = alreadyInstalled;
-		// Open a new tab with the install/review page
-		browserWin.gBrowser.loadURI("chrome://stylem/content/install.xul");
+		// Try mail window (Epyrus/Thunderbird)
+		var mailWin = wm.getMostRecentWindow("mail:3pane");
+		if (mailWin) {
+			var tabmail = mailWin.document.getElementById("tabmail");
+			if (tabmail && typeof tabmail.openTab == "function") {
+				mailWin.stylemPendingInstallCSS = css;
+				mailWin.stylemPendingInstallSourceUrl = sourceUrl || null;
+				mailWin.stylemPendingInstallAlreadyInstalled = alreadyInstalled;
+				try {
+					tabmail.openTab("chromeTab", {chromePage: "chrome://stylem/content/install.xul"});
+					return;
+				} catch(e) {}
+			}
+		}
+		if (callback) callback("error");
 	},
 
 	addCode: function(code, win) {

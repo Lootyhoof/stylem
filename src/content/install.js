@@ -22,18 +22,21 @@ var installTab = {
 	},
 
 	init: function() {
-		// Read data set by the overlay on the browser window
-		var browserWin = Services.wm.getMostRecentWindow("navigator:browser");
-		if (!browserWin) return;
+		// Read data set by the overlay
+		var sourceWin = Services.wm.getMostRecentWindow("navigator:browser");
+		if (!sourceWin || !sourceWin.stylemPendingInstallCSS) {
+			sourceWin = Services.wm.getMostRecentWindow("mail:3pane");
+		}
+		if (!sourceWin || !sourceWin.stylemPendingInstallCSS) return;
 
-		this.css       = browserWin.stylemPendingInstallCSS || null;
-		this.sourceUrl = browserWin.stylemPendingInstallSourceUrl || null;
-		var alreadyInstalled = browserWin.stylemPendingInstallAlreadyInstalled || false;
+		this.css       = sourceWin.stylemPendingInstallCSS || null;
+		this.sourceUrl = sourceWin.stylemPendingInstallSourceUrl || null;
+		var alreadyInstalled = sourceWin.stylemPendingInstallAlreadyInstalled || false;
 
 		// Clean up globals
-		delete browserWin.stylemPendingInstallCSS;
-		delete browserWin.stylemPendingInstallSourceUrl;
-		delete browserWin.stylemPendingInstallAlreadyInstalled;
+		delete sourceWin.stylemPendingInstallCSS;
+		delete sourceWin.stylemPendingInstallSourceUrl;
+		delete sourceWin.stylemPendingInstallAlreadyInstalled;
 
 		if (alreadyInstalled && this.css) {
 			this.parsed = userCSSParser.parse(this.css);
@@ -442,12 +445,22 @@ var installTab = {
 			var browserWin = Services.wm.getMostRecentWindow("navigator:browser");
 			if (browserWin && browserWin.gBrowser) {
 				browserWin.gBrowser.removeCurrentTab();
-			} else {
-				window.close();
+				return;
 			}
-		} catch(e) {
+		} catch(e) {}
+		try {
+			var mailWin = Services.wm.getMostRecentWindow("mail:3pane");
+			if (mailWin) {
+				var tabmail = mailWin.document.getElementById("tabmail");
+				if (tabmail && typeof tabmail.closeTab == "function") {
+					tabmail.closeTab(tabmail.selectedTab);
+					return;
+				}
+			}
+		} catch(e) {}
+		try {
 			window.close();
-		}
+		} catch(e) {}
 	},
 
 	resetVars: function() {
