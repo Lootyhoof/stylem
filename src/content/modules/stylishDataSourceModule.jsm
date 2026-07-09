@@ -32,9 +32,18 @@ var dataSource = {
 		if (!this._file) {
 			var path = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch).getCharPref("extensions.stylem.dbFile");
 			if (path) {
-				this._file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-				this._file.initWithPath(path);
-			} else {
+				if (/\b\.\.[\/\\]/.test(path) || path.length > 260) {
+					Components.utils.reportError("Stylem: invalid dbFile path '" + path + "' — using default.");
+				} else {
+					try {
+						this._file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+						this._file.initWithPath(path);
+					} catch(e) {
+						Components.utils.reportError("Stylem: could not init dbFile path '" + path + "' — using default.");
+					}
+				}
+			}
+			if (!this._file) {
 				this._file = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
 				this._file.append("stylish.sqlite");
 			}
