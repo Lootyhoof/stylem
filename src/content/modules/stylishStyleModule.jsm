@@ -331,6 +331,7 @@ Style.prototype = {
 			return true;
 		}
 		return this.regexpRules.some(function(rule) {
+			if (!rule || rule.length > 200 || /\(.+[{*+][?+*]/.test(rule)) return false;
 			try {
 				var re = new RegExp(this.ensureFullMatchRegexp(rule));
 			} catch (ex) {
@@ -860,20 +861,20 @@ Style.prototype = {
 	get types() { return this.getMeta("type", {}); },
 
 	download: function(url, successCallback, failureCallback) {
+		if (!/^https?:\/\//i.test(url)) {
+			Components.utils.reportError("Download of '" + url + "' failed - only http and https URLs are allowed.");
+			if (failureCallback) failureCallback();
+			return;
+		}
 		var request = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance();
 		var me = this;
 		request.QueryInterface(Components.interfaces.nsIDOMEventTarget);
 		request.addEventListener("readystatechange", function(event) {
 			if (request.readyState == 4) {
-				if ((request.status == 200 || (request.status == 0 && (url.indexOf("data:") == 0 || url.indexOf("file:") == 0))) && request.responseText) {
-					var contentType;
-					if (url.indexOf("file:") == 0) {
-						contentType = "text/css";
-					} else {
-						contentType = request.getResponseHeader("Content-type");
-						if (contentType != null && contentType.indexOf(";") > -1) {
-							contentType = contentType.split(";")[0];
-						}
+				if (request.status == 200 && request.responseText) {
+					var contentType = request.getResponseHeader("Content-type");
+					if (contentType != null && contentType.indexOf(";") > -1) {
+						contentType = contentType.split(";")[0];
 					}
 					successCallback(request.responseText, contentType);
 				} else {
