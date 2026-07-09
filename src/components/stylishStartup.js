@@ -303,7 +303,9 @@ function getUserStyleWrapper(s) {
 				var desc = String(ucss.description).replace(/[\x00-\x1f]/g, "").substring(0, 1000);
 				return desc || this.getAppliesString();
 			}
-			return this.getAppliesString();
+			var desc = this.getAppliesString();
+			if (desc.length > 200) desc = desc.substring(0, 197) + "...";
+			return desc;
 		},
 
 		getAppliesString: function() {
