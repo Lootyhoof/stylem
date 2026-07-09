@@ -203,13 +203,18 @@ var stylemCodeEditor = {
 
 		var newBlock;
 		if (match) {
-			var prefix = match[2];
-			var before = metaBlock.substring(0, match.index + match[1].length);
-			var after = metaBlock.substring(match.index + match[1].length + match[2].length + match[3].length);
-			newBlock = before + prefix + newValue + after;
+			if (newValue === "") {
+				newBlock = metaBlock.substring(0, match.index) + metaBlock.substring(match.index + match[0].length);
+			} else {
+				var prefix = match[2];
+				var before = metaBlock.substring(0, match.index + match[1].length);
+				var after = metaBlock.substring(match.index + match[1].length + match[2].length + match[3].length);
+				newBlock = before + prefix + newValue + after;
+			}
 		} else {
+			if (newValue === "") return;
 			var insertAt = metaBlock.indexOf(endMark);
-			newBlock = metaBlock.substring(0, insertAt) + "@" + key + "        " + newValue + "\n" + metaBlock.substring(insertAt);
+			newBlock = metaBlock.substring(0, insertAt) + "@" + key + "    " + newValue + "\n" + metaBlock.substring(insertAt);
 		}
 		if (newBlock === metaBlock) return;
 
