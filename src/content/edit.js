@@ -336,6 +336,13 @@ function initStyle() {
 
 	if (style) {
 		nameE.value = style.name || "";
+		// For new styles with UserCSS metadata, populate name from @name
+		if (!style.name && style.code && typeof userCSSParser !== "undefined" && userCSSParser.isUserCSS(style.code)) {
+			var parsed = userCSSParser.parse(style.code);
+			if (parsed && parsed.meta && parsed.meta["name"]) {
+				nameE.value = parsed.meta["name"];
+			}
+		}
 		updateUrlE.value = style.updateUrl || "";
 		updateTitle();
 		updateAppliesToSummary();
