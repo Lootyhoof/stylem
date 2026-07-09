@@ -220,7 +220,9 @@ function getUserStyleWrapper(s) {
 		get creator() {
 			var ucss = this._getUserCSSMeta();
 			if (!ucss.author) return null;
-			return {name: ucss.author, toString: function() { return this.name; }};
+			var name = String(ucss.author).replace(/[\x00-\x1f]/g, "").substring(0, 200);
+			if (!name) return null;
+			return {name: name, toString: function() { return this.name; }};
 		},
 
 		_usercssMeta: null,
@@ -245,7 +247,9 @@ function getUserStyleWrapper(s) {
 
 		get homepageURL() {
 			var ucss = this._getUserCSSMeta();
-			return ucss.homepageURL || this.style.url;
+			var url = ucss.homepageURL || this.style.url;
+			if (url && /^https?:\/\//i.test(url)) return url;
+			return null;
 		},
 
 		get supportURL() {
@@ -295,7 +299,10 @@ function getUserStyleWrapper(s) {
 
 		get description() {
 			var ucss = this._getUserCSSMeta();
-			if (ucss.description) return ucss.description;
+			if (ucss.description) {
+				var desc = String(ucss.description).replace(/[\x00-\x1f]/g, "").substring(0, 1000);
+				return desc || this.getAppliesString();
+			}
 			return this.getAppliesString();
 		},
 
