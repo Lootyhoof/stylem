@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL nimeruum vaikeväärtusega">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Uuenduse URL:">
+<!ENTITY appliesto "Kehtib">
+<!ENTITY editappliesto "Muuda…">
+<!ENTITY appliestodesc "Määrake @-moz-document reeglite abil, millistele lehtedele see stiil kehtib:">
+<!ENTITY addappliesrule "Lisa reegel">
 
 <!ENTITY usercsssettings "Valikud">
 <!ENTITY usercssmeta "UserCSS metaandmed">

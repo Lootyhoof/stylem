@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL именски простор као подразумевани">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL ажурирања:">
+<!ENTITY appliesto "Односи се на">
+<!ENTITY editappliesto "Уреди…">
+<!ENTITY appliestodesc "Наведите на које странице се овај стил примењује користећи @-moz-document правила:">
+<!ENTITY addappliesrule "Додај правило">
 
 <!ENTITY usercsssettings "Опције">
 <!ENTITY usercssmeta "UserCSS метаподаци">

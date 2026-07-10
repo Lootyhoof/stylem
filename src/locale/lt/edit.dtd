@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL vardai kaip numatyta">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Atnaujinimo URL:">
+<!ENTITY appliesto "Taikoma">
+<!ENTITY editappliesto "Redaguoti…">
+<!ENTITY appliestodesc "Nurodykite, kuriems puslapiams šis stilius taikomas naudodami @-moz-document taisykles:">
+<!ENTITY addappliesrule "Pridėti taisyklę">
 
 <!ENTITY usercsssettings "Parinktys">
 <!ENTITY usercssmeta "UserCSS metaduomenys">

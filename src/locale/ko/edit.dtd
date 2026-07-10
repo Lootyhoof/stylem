@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL 이름공간 선언">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "업데이트 URL:">
+<!ENTITY appliesto "적용 대상">
+<!ENTITY editappliesto "편집…">
+<!ENTITY appliestodesc "@-moz-document 규칙을 사용하여 이 스타일이 적용될 페이지를 지정하세요:">
+<!ENTITY addappliesrule "규칙 추가">
 
 <!ENTITY usercsssettings "옵션">
 <!ENTITY usercssmeta "UserCSS 메타데이터">

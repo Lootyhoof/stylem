@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL namespace bilang default">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL ng update:">
+<!ENTITY appliesto "Naaangkop sa">
+<!ENTITY editappliesto "I-edit…">
+<!ENTITY appliestodesc "Tukuyin kung aling mga pahina ang nalalapat ang style na ito gamit ang mga panuntunan ng @-moz-document:">
+<!ENTITY addappliesrule "Magdagdag ng panuntunan">
 
 <!ENTITY usercsssettings "Opsyon">
 <!ENTITY usercssmeta "UserCSS metadata">

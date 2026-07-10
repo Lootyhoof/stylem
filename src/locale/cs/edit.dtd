@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "Jmenný prostor XUL jako výchozí">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Adresa URL aktualizace:">
+<!ENTITY appliesto "Platí pro">
+<!ENTITY editappliesto "Upravit…">
+<!ENTITY appliestodesc "Určete, na které stránky se tento styl vztahuje pomocí pravidel @-moz-document:">
+<!ENTITY addappliesrule "Přidat pravidlo">
 
 <!ENTITY usercsssettings "Možnosti">
 <!ENTITY usercssmeta "Metadata UserCSS">

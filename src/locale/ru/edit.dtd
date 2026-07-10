@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "Пространство имен XUL">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL обновления:">
+<!ENTITY appliesto "Применяется к">
+<!ENTITY editappliesto "Редактировать…">
+<!ENTITY appliestodesc "Укажите, к каким страницам применяется этот стиль, используя правила @-moz-document:">
+<!ENTITY addappliesrule "Добавить правило">
 
 <!ENTITY usercsssettings "Настройки">
 <!ENTITY usercssmeta "Метаданные UserCSS">

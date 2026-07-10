@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL ονομάτων ως προεπιλογή">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL ενημέρωσης:">
+<!ENTITY appliesto "Ισχύει για">
+<!ENTITY editappliesto "Επεξεργασία…">
+<!ENTITY appliestodesc "Καθορίστε σε ποιες σελίδες ισχύει αυτό το στυλ χρησιμοποιώντας κανόνες @-moz-document:">
+<!ENTITY addappliesrule "Προσθήκη κανόνα">
 
 <!ENTITY usercsssettings "Επιλογές">
 <!ENTITY usercssmeta "Μεταδεδομένα UserCSS">

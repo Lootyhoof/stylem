@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL ad alanı varsayılan">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Güncelleme URL'si:">
+<!ENTITY appliesto "Şunun için geçerli:">
+<!ENTITY editappliesto "Düzenle…">
+<!ENTITY appliestodesc "Bu stilin hangi sayfalar için geçerli olduğunu @-moz-document kurallarını kullanarak belirtin:">
+<!ENTITY addappliesrule "Kural ekle">
 
 <!ENTITY usercsssettings "Seçenekler">
 <!ENTITY usercssmeta "UserCSS meta verileri">

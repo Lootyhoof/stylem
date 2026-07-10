@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL-namnrymd som standard">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Uppdaterings-URL:">
+<!ENTITY appliesto "Gäller för">
+<!ENTITY editappliesto "Redigera…">
+<!ENTITY appliestodesc "Ange vilka sidor denna stil gäller för med @-moz-document-regler:">
+<!ENTITY addappliesrule "Lägg till regel">
 
 <!ENTITY usercsssettings "Alternativ">
 <!ENTITY usercssmeta "UserCSS-metadata">

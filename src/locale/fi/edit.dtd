@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL-nimiavaruus">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Päivityksen URL:">
+<!ENTITY appliesto "Koskee">
+<!ENTITY editappliesto "Muokkaa…">
+<!ENTITY appliestodesc "Määritä @-moz-document-sääntöjen avulla, mille sivuille tämä tyyli koskee:">
+<!ENTITY addappliesrule "Lisää sääntö">
 
 <!ENTITY usercsssettings "Asetukset">
 <!ENTITY usercssmeta "UserCSS-metadata">

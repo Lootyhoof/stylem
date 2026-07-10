@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL kot privzeti imenski prostor">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL za posodobitev:">
+<!ENTITY appliesto "Velja za">
+<!ENTITY editappliesto "Uredi…">
+<!ENTITY appliestodesc "Določite, za katere strani ta slog velja z uporabo pravil @-moz-document:">
+<!ENTITY addappliesrule "Dodaj pravilo">
 
 <!ENTITY usercsssettings "Možnosti">
 <!ENTITY usercssmeta "UserCSS metapodatki">

@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL مساحة الاسم افتراضياً">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "رابط التحديث:">
+<!ENTITY appliesto "ينطبق على">
+<!ENTITY editappliesto "تحرير…">
+<!ENTITY appliestodesc "حدد الصفحات التي ينطبق عليها هذا النمط باستخدام قواعد @-moz-document:">
+<!ENTITY addappliesrule "إضافة قاعدة">
 
 <!ENTITY usercsssettings "خيارات">
 <!ENTITY usercssmeta "بيانات UserCSS الوصفية">

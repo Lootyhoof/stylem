@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "預設的 XUL 命名空間">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "更新 URL：">
+<!ENTITY appliesto "套用至">
+<!ENTITY editappliesto "編輯…">
+<!ENTITY appliestodesc "使用 @-moz-document 規則指定此樣式套用至哪些頁面：">
+<!ENTITY addappliesrule "新增規則">
 
 <!ENTITY usercsssettings "選項">
 <!ENTITY usercssmeta "UserCSS 中繼資料">

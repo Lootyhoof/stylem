@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "Spaţiu de nume XUL ca valoare implicită">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL actualizare:">
+<!ENTITY appliesto "Se aplică la">
+<!ENTITY editappliesto "Editați…">
+<!ENTITY appliestodesc "Specificați căror pagini li se aplică acest stil folosind reguli @-moz-document:">
+<!ENTITY addappliesrule "Adăugați regulă">
 
 <!ENTITY usercsssettings "Opțiuni">
 <!ENTITY usercssmeta "Metadate UserCSS">

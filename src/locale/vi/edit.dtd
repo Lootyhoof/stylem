@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "Không gian tên XML làm mặc định">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL cập nhật:">
+<!ENTITY appliesto "Áp dụng cho">
+<!ENTITY editappliesto "Chỉnh sửa…">
+<!ENTITY appliestodesc "Chỉ định trang nào mà style này áp dụng bằng cách sử dụng quy tắc @-moz-document:">
+<!ENTITY addappliesrule "Thêm quy tắc">
 
 <!ENTITY usercsssettings "Tùy chọn">
 <!ENTITY usercssmeta "Siêu dữ liệu UserCSS">

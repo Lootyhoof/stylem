@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL namespace como padrão">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "URL de atualização:">
+<!ENTITY appliesto "Aplica-se a">
+<!ENTITY editappliesto "Editar…">
+<!ENTITY appliestodesc "Especifique a que páginas este estilo se aplica usando regras @-moz-document:">
+<!ENTITY addappliesrule "Adicionar regra">
 
 <!ENTITY usercsssettings "Opções">
 <!ENTITY usercssmeta "Metadados do UserCSS">

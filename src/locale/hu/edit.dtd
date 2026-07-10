@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "XUL névtér beállítása alapértelmezettként">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "Frissítési URL:">
+<!ENTITY appliesto "Vonatkozik">
+<!ENTITY editappliesto "Szerkesztés…">
+<!ENTITY appliestodesc "Adja meg, hogy mely oldalakra vonatkozik ez a stílus @-moz-document szabályok segítségével:">
+<!ENTITY addappliesrule "Szabály hozzáadása">
 
 <!ENTITY usercsssettings "Beállítások">
 <!ENTITY usercssmeta "UserCSS metaadatok">

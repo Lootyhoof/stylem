@@ -21,6 +21,10 @@
 <!ENTITY xulnamespace "שם מרחב XUL כברירת מחדל">
 <!ENTITY xulnamespace.ak "X">
 <!ENTITY updateurl "כתובת עדכון:">
+<!ENTITY appliesto "חל על">
+<!ENTITY editappliesto "עריכה…">
+<!ENTITY appliestodesc "ציין לאילו דפים סגנון זה חל באמצעות כללי @-moz-document:">
+<!ENTITY addappliesrule "הוסף כלל">
 
 <!ENTITY usercsssettings "אפשרויות">
 <!ENTITY usercssmeta "מטא־נתוני UserCSS">
