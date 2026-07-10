@@ -1,5 +1,8 @@
 # Changelog
 
+### 3.0.1
+- ensure the edit pane's new strings are included in each locale
+
 ### 3.0.0
 - support UserCSS format and prefer it over the legacy format
 - detect when UserCSS is opened and prompt to install it

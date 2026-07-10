@@ -5,7 +5,7 @@
   <Description rdf:about="urn:mozilla:install-manifest">
     <em:id>{503a85e3-84c9-40e5-b98e-98e62085837f}</em:id>
     <em:name>Stylem</em:name>
-    <em:version>3.0.0</em:version>
+    <em:version>3.0.1</em:version>
     <em:description>Restyle the web with Stylem, a UserCSS-compatible user styles manager for UXP-based applications.</em:description>
     <em:creator>Lootyhoof</em:creator>
     <em:iconURL>chrome://stylem/skin/32.svg</em:iconURL>
