@@ -502,6 +502,8 @@ function checkForErrors() {
 	enableCheckForErrors(true);
 }
 
+var _validStyleElm = null;
+
 function validDeclaration(prop, val) {
 	// CSS custom properties (--*) are valid by definition
 	if (prop.indexOf("--") === 0) return true;
@@ -517,9 +519,26 @@ function validDeclaration(prop, val) {
 	cleanVal = cleanVal.trim();
 	if (!cleanVal) return true;
 	if (typeof CSS !== "undefined" && CSS.supports) {
-		return CSS.supports(prop, cleanVal);
+		// CSS.supports is fast but can give false negatives in Goanna
+		// (e.g. margin-inline-end). When it says false, verify via
+		// the actual CSS parser — Goanna drops unknown properties
+		// from the CSSOM.
+		if (CSS.supports(prop, cleanVal)) return true;
 	}
-	return true;
+	// Fallback: parse the declaration and check if Goanna kept it
+	try {
+		if (!_validStyleElm) {
+			_validStyleElm = document.createElementNS("http://www.w3.org/1999/xhtml", "style");
+			_validStyleElm.setAttribute("type", "text/css");
+		}
+		_validStyleElm.textContent = "* {" + prop + ":" + cleanVal + "}";
+		(document.body || document.documentElement).appendChild(_validStyleElm);
+		var rule = _validStyleElm.sheet.cssRules[0];
+		var kept = rule && rule.style.getPropertyValue(prop) !== "";
+		_validStyleElm.parentNode.removeChild(_validStyleElm);
+		if (kept) return true;
+	} catch(e) {}
+	return false;
 }
 
 function stripMozDocument(css) {
@@ -549,29 +568,50 @@ function stripMozDocument(css) {
 function extractDeclarations(css) {
 	var decls = [];
 	// Strip @-moz-document blocks — their URL patterns (domain, url-prefix, etc.)
-	// look like CSS selectors to the regex, causing false positives.
+	// look like CSS selectors and would confuse parsing.
 	var clean = stripMozDocument(css);
-	// Strip comments so they don't confuse the regex
+	// Strip comments so they don't confuse parsing
 	clean = clean.replace(/\/\*[\s\S]*?\*\//g, "");
-	// Match {...} blocks whose selector (text before {) starts with
-	// a valid selector character — NOT @ (which would be an @-rule).
-	var blockRe = /(?:^|[\s;}])([a-zA-Z#.\[:*_-][^{]*)\{([^}]*)\}/gm;
-	var match;
-	while ((match = blockRe.exec(clean)) !== null) {
-		var block = match[2];
-		var parts = block.split(";");
-		for (var i = 0; i < parts.length; i++) {
-			var part = parts[i].trim();
-			if (!part) continue;
-			var colonIdx = part.indexOf(":");
-			if (colonIdx === -1) continue;
-			var prop = part.substring(0, colonIdx).trim();
-			var val = part.substring(colonIdx + 1).trim();
-			if (!prop || !val) continue;
-			// Line number of the opening brace in the clean string
-			var bracePos = match.index + match[0].indexOf("{");
-			var line = clean.substring(0, bracePos).split("\n").length;
-			decls.push({prop: prop, val: val, line: line});
+
+	// Walk through the CSS finding { } blocks with proper brace-depth
+	// counting.  Only leaf blocks (those without nested {}) contain
+	// declarations; non-leaf blocks (e.g. @media) are entered to find
+	// their children.
+	var pos = 0;
+	while (true) {
+		var openPos = clean.indexOf("{", pos);
+		if (openPos === -1) break;
+
+		// Find the matching } accounting for nesting
+		var depth = 1;
+		var closePos = openPos + 1;
+		while (depth > 0 && closePos < clean.length) {
+			if (clean[closePos] === "{") depth++;
+			else if (clean[closePos] === "}") depth--;
+			closePos++;
+		}
+		closePos--;
+
+		var content = clean.substring(openPos + 1, closePos);
+
+		if (content.indexOf("{") === -1) {
+			// Leaf block — extract declarations
+			var line = clean.substring(0, openPos).split("\n").length;
+			var parts = content.split(";");
+			for (var pi = 0; pi < parts.length; pi++) {
+				var part = parts[pi].trim();
+				if (!part) continue;
+				var colonIdx = part.indexOf(":");
+				if (colonIdx === -1) continue;
+				var prop = part.substring(0, colonIdx).trim();
+				var val = part.substring(colonIdx + 1).trim();
+				if (!prop || !val) continue;
+				decls.push({prop: prop, val: val, line: line});
+			}
+			pos = closePos + 1;
+		} else {
+			// Non-leaf block (e.g. @media) — enter to find children
+			pos = openPos + 1;
 		}
 	}
 	return decls;

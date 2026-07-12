@@ -184,9 +184,10 @@ var userCSSParser = {
 		if (found) return opts;
 
 		// USO format: "Label": "value" or 'Label': 'value'
-		var pairRe = /(["'])([^"']+)\1\s*:\s*(?:(["'])([^"']*)\3|([\w.-]+))/g;
+		// Values may contain quotes of the opposite kind (e.g. url('...') inside "...").
+		var pairRe = /(["'])([^"']+)\1\s*:\s*(?:"([^"]*)"|'([^']*)'|([\w@\/:#.\-]+))/g;
 		while ((m = pairRe.exec(inner)) !== null) {
-			opts.push({ label: m[2], value: m[4] !== undefined ? m[4] : m[5] });
+			opts.push({ label: m[2], value: m[3] !== undefined ? m[3] : (m[4] !== undefined ? m[4] : m[5]) });
 		}
 		return opts;
 	},
@@ -253,16 +254,25 @@ var userCSSParser = {
 	},
 
 	_applyVarsDefault: function(css, vars) {
-		// Build :root { --var-name: value; ... } block
+		// Replace var(--name) with the resolved value inline, so the
+		// final CSS has no remaining variable references.  This avoids
+		// relying on CSS custom-property resolution in user stylesheets
+		// (which Goanna may not fully support in that context).
+		vars.forEach(function(v) {
+			var val = userCSSParser._cssValue(v);
+			var re = new RegExp("\\bvar\\(--" + userCSSParser._escapeRegex(v.name) + "\\)", "g");
+			css = css.replace(re, val);
+		});
+
+		// Also append a :root block so the variable values are available
+		// to any other var(--name) references (e.g. in other styles on
+		// the same page, or manual use in the browser console).
 		var rootVars = vars.map(function(v) {
 			var val = userCSSParser._cssValue(v);
 			return "  --" + v.name + ": " + val + ";";
 		}).join("\n");
 
 		var rootBlock = ":root {\n" + rootVars + "\n}\n";
-
-		// Append after the original CSS so injected values override
-		// any existing :root { --name: default; } in the source.
 		return css + "\n" + rootBlock;
 	},
 
