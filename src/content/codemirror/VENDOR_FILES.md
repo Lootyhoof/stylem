@@ -1,6 +1,6 @@
 # CodeMirror 5 — Files to Vendor
 
-Download: https://codemirror.net/5/codemirror.zip (v5.65.18, MIT License)
+Download: https://codemirror.net/5/codemirror-5.65.21.zip (v5.65.21, MIT License)
 
 Extract **only** the following files from the zip into the matching paths
 under `src/content/codemirror/`. Do not copy the whole zip — Stylem only
@@ -65,5 +65,5 @@ A unified diff of all local modifications against the v5.65.18 upstream
 is at `codemirror-patches.patch`. Apply it after replacing files:
 
 ```
-patch -p0 < codemirror-patches.patch
+patch -p1 < codemirror-patches.patch
 ```
