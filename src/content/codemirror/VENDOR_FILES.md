@@ -57,7 +57,13 @@ Full details and the compliance checklist are in
 
 The `LICENSE` file from the CodeMirror zip MUST be copied into
 `src/content/codemirror/LICENSE` and is referenced from Stylem's own
-`THIRD_PARTY_LICENSES.md`. Do not modify CodeMirror source files;
-if you need a patch, keep it as a separate small overlay script rather
-than editing the vendored files, so MIT attribution stays clean and
-upstream updates remain a straight file copy.
+`THIRD_PARTY_LICENSES.md`.
+
+## Applying patches when upgrading
+
+A unified diff of all local modifications against the v5.65.18 upstream
+is at `codemirror-patches.patch`. Apply it after replacing files:
+
+```
+patch -p0 < codemirror-patches.patch
+```
