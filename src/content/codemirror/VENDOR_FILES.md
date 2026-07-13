@@ -61,7 +61,7 @@ The `LICENSE` file from the CodeMirror zip MUST be copied into
 
 ## Applying patches when upgrading
 
-A unified diff of all local modifications against the v5.65.18 upstream
+A unified diff of all local modifications against the v5.65.21 upstream
 is at `codemirror-patches.patch`. Apply it after replacing files:
 
 ```
