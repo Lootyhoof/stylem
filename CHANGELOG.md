@@ -1,5 +1,10 @@
 # Changelog
 
+### 3.0.2
+- ensure nested quotes in vars are possible (e.g. "url('...))
+- var changes in the default preprocessor should happen immediately
+- ensure that CodeMirror only provides CSS properties available in UXP
+
 ### 3.0.1
 - ensure the edit pane's new strings are included in each locale
 
