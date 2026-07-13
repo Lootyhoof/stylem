@@ -65,5 +65,6 @@ A unified diff of all local modifications against the v5.65.21 upstream
 is at `codemirror-patches.patch`. Apply it after replacing files:
 
 ```
-patch -p1 < codemirror-patches.patch
+patch -p0 < codemirror-patches.patch
+(assuming you run the command from the repo root)
 ```
