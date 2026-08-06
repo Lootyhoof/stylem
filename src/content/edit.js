@@ -547,6 +547,9 @@ function stripMozDocument(css) {
 	var re = /@-moz-document\s*([^{]*)\{/gi;
 	var match;
 	while ((match = re.exec(css)) !== null) {
+		// Skip matches nested inside a wrapper that was already extracted in
+		// this pass — extracting them again would duplicate text.
+		if (match.index < lastPos) continue;
 		result += css.substring(lastPos, match.index);
 		// Count braces to find the matching } of @-moz-document
 		var depth = 1;
@@ -740,8 +743,10 @@ function addAppliesRule() {
 // This ensures that rules added/removed via the UI actually take effect
 // by wrapping the inner CSS code in @-moz-document conditions.
 function rebuildDocumentWrapper() {
-	if (!style || !style.code) return;
-	var code = style.code;
+	if (!style) return;
+	// Work from the current editor content so any unsaved edits are preserved.
+	var code = stylemCodeEditor.getValue();
+	if (!code) return;
 	// Preserve any UserCSS metadata block at the top
 	var metaBlock = "";
 	var metaMatch = code.match(/^\/\* ==UserStyle==[\s\S]*?==\/UserStyle== \*\//);
@@ -749,20 +754,19 @@ function rebuildDocumentWrapper() {
 		metaBlock = metaMatch[0];
 		code = code.substring(metaMatch[0].length);
 	}
-	var trimmed = code.trim();
-	var innerCode = code;
-	// If the code is already wrapped in a single @-moz-document block,
-	// strip the wrapper to get the inner CSS
-	if (trimmed.indexOf("@-moz-document") === 0) {
-		var braceStart = trimmed.indexOf("{");
-		var braceEnd = trimmed.lastIndexOf("}");
-		if (braceStart > 0 && braceEnd > braceStart) {
-			var rest = trimmed.substring(braceStart + 1, braceEnd).trim();
-			if (rest.indexOf("@-moz-document") === -1) {
-				innerCode = rest;
-			}
-		}
+	// Strip every @-moz-document wrapper — repeatedly, so nested wrappers
+	// left behind by earlier versions of this function are removed too —
+	// leaving only the CSS the user actually wrote.
+	var stripped = stripAllMozDocument(code);
+	// Keep leading @namespace/@import/@charset statements outside the
+	// @-moz-document wrapper; they are only valid at the top level.
+	var prelude = "";
+	var preludeMatch = stripped.match(/^\s*@(namespace|import|charset)[^;]*;/);
+	if (preludeMatch) {
+		prelude = preludeMatch[0].replace(/^\s+/, "").replace(/\s*$/, "\n\n");
+		stripped = stripped.substring(preludeMatch[0].length).replace(/^\s+/, "");
 	}
+	var innerCode = stripped;
 	// Collect all applies-to conditions from metadata
 	var conditions = [];
 	["url", "url-prefix", "domain", "regexp"].forEach(function(t) {
@@ -771,13 +775,26 @@ function rebuildDocumentWrapper() {
 			conditions.push(t + "(\"" + v + "\")");
 		});
 	});
+	var prefix = metaBlock + (metaBlock ? "\n" : "") + prelude;
 	if (conditions.length > 0) {
-		style.code = metaBlock + (metaBlock ? "\n" : "") + "@-moz-document " + conditions.join(", ") + " {\n" + innerCode + "\n}";
+		style.code = prefix + "@-moz-document " + conditions.join(", ") + " {\n" + innerCode.replace(/^\s+|\s+$/g, "") + "\n}";
 	} else if (innerCode !== code) {
-		style.code = metaBlock + (metaBlock ? "\n" : "") + innerCode;
+		style.code = prefix + innerCode.replace(/^\s+|\s+$/g, "") + "\n";
 	} else {
-		style.code = metaBlock + (metaBlock ? "\n" : "") + code;
+		style.code = prefix + code;
 	}
+}
+
+// Remove every @-moz-document wrapper from the CSS.  Loop because a
+// previous (buggy) rebuild could have left wrappers nested inside other
+// wrappers; each pass removes the outermost remaining one.
+function stripAllMozDocument(css) {
+	var previous;
+	do {
+		previous = css;
+		css = stripMozDocument(css);
+	} while (css !== previous);
+	return css;
 }
 
 function updateAppliesToSummary() {
