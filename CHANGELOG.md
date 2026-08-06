@@ -1,5 +1,8 @@
 # Changelog
 
+### 3.0.3
+- fix duplicate CSS when editing applies-to rules
+
 ### 3.0.2
 - ensure nested quotes in vars are possible (e.g. "url('...))
 - var changes in the default preprocessor should happen immediately
