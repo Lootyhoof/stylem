@@ -281,7 +281,7 @@ var stylishOverlay = {
 				}, false);
 				stylishCommon.domApplyAttributes(menuitem, {
 					"label": style.name,
-					"checked": style.enabled,
+					"checked": !!style.enabled,
 					"style-type": style.getTypes({}).join(" ")
 				});
 				if ((startIndex + index) < 9) {
