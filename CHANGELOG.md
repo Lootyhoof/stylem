@@ -1,5 +1,8 @@
 # Changelog
 
+### 3.0.4
+- ensure toolbarbutton menu checkmark shows correctly
+
 ### 3.0.3
 - fix duplicate CSS when editing applies-to rules
 
