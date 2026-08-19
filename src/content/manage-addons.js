@@ -70,7 +70,7 @@ var stylemManageAddons = {
 // add some more properties so we can sort on them
 stylemManageAddons._createItem = createItem,
 
-(function() {
+window.addEventListener("load", function() {
 	var popup = document.getElementById('addonitem-popup');
 	if (!popup) return;
 	var supportItem = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "menuitem");
@@ -91,7 +91,7 @@ stylemManageAddons._createItem = createItem,
 			supportItem.setAttribute('disabled', 'true');
 		}
 	});
-})();
+}, false);
 createItem = function(o, aIsInstall, aIsRemote) {
 	var item = stylemManageAddons._createItem(o, aIsInstall, aIsRemote);
 	if ("mAddon" in item && item.mAddon.type == "userstyle") {
