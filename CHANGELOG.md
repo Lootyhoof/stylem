@@ -1,5 +1,9 @@
 # Changelog
 
+### 3.0.5
+- defer addonitem-popup lookup to window load to fix AOM context menus
+- use correct URL for first-time docs
+
 ### 3.0.4
 - ensure toolbarbutton menu checkmark shows correctly
 
